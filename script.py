@@ -1,12 +1,18 @@
 import time
 import json
 import yagmail
-from webbot import Browser
-from bs4 import BeautifulSoup as bs
+from selenium import webdriver 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC 
+from bs4 import BeautifulSoup as BS
 from auth import *
 
 
-web = Browser(showWindow=False)
+option = webdriver.ChromeOptions()
+option.add_argument(' — incognito')
+browser = webdriver.Chrome(executable_path='/home/drewvlaz/grade-checker-script/chromedriver_linux64/chromedriver', chrome_options=option)
+
 subjects = ['chem', 'span', 'calc', 'lang', 'hist', 'prog']
 class_titles = [
         '[HS] AP CHEMISTRY', 
@@ -19,28 +25,37 @@ class_titles = [
 def get_html(subjects, class_titles):
 
     # go to website and login
-    web.go_to(URL)
-    web.type(USERNAME + '\t', id='txt_Username')
-    web.type(PASSWORD + '\n', id='txt_Password')
+    browser.get(URL)
+    browser.find_element_by_id('txt_Username').send_keys(USERNAME)
+    browser.find_element_by_id('txt_Password').send_keys(PASSWORD + '\n')
 
     # get html of home page
     file = open('source.html', 'w+')
-    file.write(web.get_page_source())
+    file.write(browser.page_source)
     file.close
 
     # get html containing assignments for each class
     index = 0
     for class_name in class_titles:
-        web.click(text=class_name)
+        # find class title to click
+        target = browser.find_element_by_xpath(f'//*[contains(text(), "{class_name}")]')
+        target.click()
+
+        # wait for grades to load
+        delay = 5
+        WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="div_class"]/table[1]/tbody/tr[1]/td/table/tbody/tr/td[1]')))
         time.sleep(1)
+
+        # save html
         file_name = 'source_' + str(subjects[index]) + '.html'
         file = open(file_name, 'w+')
-        file.write(web.get_page_source())
+        file.write(browser.page_source)
         file.close
+
         index += 1
-    
+
     # close browser
-    web.quit()
+    browser.quit()
 
 def create_soup(subject):
 
@@ -48,7 +63,7 @@ def create_soup(subject):
 
     # open file if it exists and parse it into soup, else create file and parse
     with open(file_name, 'r') as file:
-        soup = bs(file.read(), 'html.parser')
+        soup = BS(file.read(), 'html.parser')
 
     return soup
 
@@ -122,7 +137,7 @@ def send_email(msg):
 
     # yagmail.register(EMAIL_ADDRESS, EMAIL_PASSWORD)
     yag = yagmail.SMTP(EMAIL_ADDRESS, EMAIL_PASSWORD)
-    yag.send(to=EMAIL_ADDRESS, subject='Grades Updated', contents=msg)
+    yag.send(to='314dsv@gmail.com', subject='Grades Updated', contents=msg)
 
 
 def get_differences(blank_list, compare_list):
@@ -166,7 +181,7 @@ def main():
         # check to see if there was an update
         if new_blanks != old_blanks:
             # Grades Updated!
-            differences = get_differences()
+            # differences = get_differences()
             # check each subject
             index_subjects = 0
             for subject in old_blanks:
