@@ -185,6 +185,13 @@ def main():
                     f"\nNew Class Grade: {new_percent} {letter_grade}"
                     "\n\n- a python script :)"
                     )
+                msg = (
+                    "Class: {name}".format(name)
+                    "\nAssignment: {assignment}".format(assignment)
+                    "\nScore: {my_score} / {total_score}".format(my_score, total_score)
+                    "\nNew Class Grade: {new_percent} {letter_grade}".format(new_percent, letter_grade)
+                    "\n\n- a python script :)"
+                    )
 
                 send_email(msg)
 

@@ -18,6 +18,7 @@ class Subject:
 
         # find class title to click
         target = browser.find_element_by_xpath(f'//*[contains(text(), "{self.name}")]')
+        # target = browser.find_element_by_xpath(f'//*[contains(text(), "{}")]'.format(self.name))
         target.click()
 
         # wait for grades to load
