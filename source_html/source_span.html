@@ -1,0 +1,4400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+<title>SV Portal</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+<meta http-equiv="Page-Enter" content="blendTrans(Duration=0.001)" />
+<meta http-equiv="Page-Exit" content="blendTrans(Duration=0.001)" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="format-detection" content="telephone=no" />
+
+<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet" /> 
+<link rel="apple-touch-icon" href="https://portal.svsd.net/_images/iphone-icon.png" />
+<script type="text/javascript" src="https://portal.svsd.net/_js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="https://portal.svsd.net/_js/jquery-ui_v1-12-1_2016-09-14.js"></script>
+<script type="text/javascript" src="https://portal.svsd.net/_js/jquery_maxlength_v1-2.js"></script>
+
+<style type="text/css">
+
+/* ================================================================================================ */
+/* toolbar-button */
+/* ================================================================================================ */
+
+.toolbar-button {
+	background-color: #0971CE;
+}
+
+.toolbar-button:hover {
+	background-color: #5AB6E7;
+	cursor: pointer;
+}
+
+/* ================================================================================================ */
+/* TD SORT */
+/* ================================================================================================ */
+
+.tdsort {
+	background: url('https://portal.svsd.net/_images/gradientblue.png');
+}
+
+.tdsort:hover {
+	background: url('https://portal.svsd.net/_images/gradientcyan.png');
+	cursor: pointer;
+}
+
+/* ================================================================================================ */
+/* TD NO SORT */
+/* ================================================================================================ */
+
+.tdnosort {
+	cursor: default;
+}
+
+.tdnosort:hover {
+	cursor: default;
+}
+
+/* ================================================================================================ */
+/* ASSIGNMENT TYPE */
+/* ================================================================================================ */
+
+.assignmenttype_dropdown_td:hover {
+	background: #DEDEDE;
+}
+
+/* ================================================================================================ */
+/* CALENDER */
+/* ================================================================================================ */
+
+.calendarhover:hover {
+	background: #EEEEEE;
+	cursor: pointer;
+}
+
+/* ================================================================================================ */
+/* GENERAL HTML TAGS */
+/* ================================================================================================ */
+
+html {
+	overflow-y: scroll;
+	overflow: -moz-scrollbars-vertical;
+	filter: expression(document.execCommand("BackgroundImageCache", false, true));
+}
+
+body {
+	font-family: Arial;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	color: #333333;
+	background-color: #383841;
+}
+
+
+td {
+	font-size: 12pt;
+	border-color: #999999;
+	color: #333333;
+}
+
+a {
+	color: #0072C6;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.nounderlineonhover:hover {
+	text-decoration: none;
+}
+
+form { 
+	display: inline;
+}
+
+input, textarea {
+	-webkit-border-radius: 0;
+	font-family: Arial;
+}
+
+input[type=text]::-ms-clear { display: none; }
+
+ul {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #333333;
+	padding-left: 16px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+hr {
+	height: 1px;
+	border: none;
+	color: #CCCCCC;
+	background-color: #CCCCCC;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/*=================================================================================================*/
+
+.bluebutton {
+	background: #006AE2;
+	color: #FFFFFF;
+	font-family: Arial;
+	font-size: 10pt;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 4px;
+	text-align: center;
+	vertical-align: middle;
+	
+	/* FOR DIVS: */
+	display: inline-block;
+	display: -moz-inline-stack; /* for firefox 2 */
+	*display: inline; /* for ie 6 and 7 */
+}
+
+.bluebutton:hover {
+	background: #0074F6;
+}
+
+/*=================================================================================================*/
+
+.greenbutton {
+	background: #009933;
+	color: #FFFFFF;
+	font-family: Arial;
+	font-size: 10pt;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 4px;
+	text-align: center;
+	vertical-align: middle;
+	
+	/* FOR DIVS: */
+	display: inline-block;
+	display: -moz-inline-stack; /* for firefox 2 */
+	*display: inline; /* for ie 6 and 7 */
+}
+
+.greenbutton:hover {
+	background: #00AE38;
+}
+
+/*=================================================================================================*/
+
+.orangebutton {
+	background: #E68A00;
+	color: #FFFFFF;
+	font-family: Arial;
+	font-size: 10pt;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 4px;
+	text-align: center;
+	vertical-align: middle;
+	
+	/* FOR DIVS: */
+	display: inline-block;
+	display: -moz-inline-stack; /* for firefox 2 */
+	*display: inline; /* for ie 6 and 7 */
+}
+
+.orangebutton:hover {
+	background: #FA9900;
+}
+
+/* ================================================================================================ */
+/* TITLE FONT */
+/* ================================================================================================ */
+
+@font-face {
+   font-family: titlefont;
+   src: url('https://portal.svsd.net/_fonts/titlefont.woff');
+}
+
+.titletext {
+	font-size: 24pt;
+	font-family: titlefont;
+	color: #32566C;
+}
+
+/* ================================================================================================ */
+/* GREYBANNER
+/* ================================================================================================ */
+
+.greybanner {
+	height: 60px;
+	font-size: 18pt;
+	font-weight: bold;
+	border-top: 1px solid #CCCCCC;
+	background: url('https://portal.svsd.net/_Images/GridGradientBigger.png');
+}
+
+/* ================================================================================================ */
+/* DIV LINK */
+/* ================================================================================================ */
+
+.divlinkpointer:hover {
+	cursor: pointer;
+}
+
+/* ================================================================================================ */
+/* VALIDATION */
+/* ================================================================================================ */
+
+label.error {
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	margin-left: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+/* ========================================================= */
+/* DOTTED BOTTOM */
+/* ========================================================= */
+
+.dottedbottom {
+	border-bottom-style: dotted;
+	border-bottom-color: #888888;
+	border-bottom-width: 1px;
+}
+
+/* ========================================================= */
+/* INFOTEXT */
+/* ========================================================= */
+
+span.infotext {
+	
+}
+
+/* DEFINE THE HIDDEN SPAN */
+
+span.infotext span {
+	color: #5A5A5A;
+    display: none;
+	position: absolute;
+    z-index: 99998;
+    padding: 4px;
+    margin-top: 18px;
+    margin-left: 0px;
+    text-align: left;
+    font-size: 9pt;
+    font-style: italic;
+    font-weight: normal;
+	background-color: #FFFFCE;
+	border: 1px solid #DADBAB;
+}
+
+/* PROPERTIES THAT GET MODIFIED DURING HOVER */
+
+span:hover.infotext span {
+	display: inline;
+}
+
+/* ========================================================= */
+/* INFOTEXT2 */
+/* ========================================================= */
+
+span.infotext2 {
+	color: #333333;
+	text-decoration: none;
+}
+
+/* DEFINE THE HIDDEN SPAN */
+
+span.infotext2 span {
+	color: #5A5A5A;
+    display: none;
+	position: absolute;
+    z-index: 99998;
+    padding: 4px;
+    margin-top: 0px;
+    margin-left: 60px;
+    text-align: left;
+    font-size: 9pt;
+    font-style: italic;
+    font-weight: normal;
+	background-color: #FFFFCE;
+	border: 1px solid #DADBAB;
+}
+
+/* PROPERTIES THAT GET MODIFIED DURING HOVER */
+
+span:hover.infotext2 span {
+	display: inline;
+}
+
+/* ========================================================= */
+/* INFOTIP */
+/* ========================================================= */
+
+a.infotip {
+}
+
+/* DEFINE THE HIDDEN SPAN */
+
+a.infotip span {
+    display: none;
+    z-index: 99998;
+    padding: 4px;
+    margin-top: 18px;
+    margin-left: 0px;
+    text-align: left;
+    font-size: 9pt;
+    font-style: italic;
+	color: #333333;
+	background-color: #FFFFCE;
+	border: 1px solid #DADBAB;
+}
+
+/* PROPERTIES THAT GET MODIFIED DURING HOVER */
+
+a:hover.infotip span {
+	display: inline;
+	position: absolute;
+}
+
+/* ================================================================================================ */
+/* POPUP WINDOWS */
+/* ================================================================================================ */
+
+#popup_background_feedback_zindex2 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background-color: black;
+}
+
+#popup_foreground_feedback_zindex3 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex2b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background-color: black;
+}
+
+#popup_foreground_zindex3b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex4b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 4;
+	background-color: black;
+}
+
+#popup_foreground_zindex5b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex6b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 6;
+	background-color: black;
+}
+
+#popup_foreground_zindex7b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 7;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex2 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background-color: black;
+}
+
+#popup_foreground_zindex3 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex4 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 4;
+	background-color: black;
+}
+
+#popup_foreground_zindex5 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex6 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 6;
+	background-color: black;
+}
+
+#popup_foreground_zindex7 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 7;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_foreground_window_welcome {
+	width: 960px;
+	height: 165px;
+	top: 8px;
+	background-color: #0072C6;
+	border-color: #333333;
+	border-style: solid;
+	border-width: 1px;
+	-moz-box-shadow: 0px 0px 30px 0px #000000;
+	-webkit-box-shadow: 0px 0px 30px 0px #000000;
+	box-shadow: 0px 0px 30px 0px #000000;
+}
+
+/* ================================================================================================ */
+
+#popup_foreground_window_white {
+	background-color: #FFFFFF;
+	border-color: #0191FF;
+	border-style: solid;
+	border-width: 1px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-bottom: 6px;
+	-moz-box-shadow: 0px 0px 30px 0px #000000;
+	-webkit-box-shadow: 0px 0px 30px 0px #000000;
+	box-shadow: 0px 0px 30px 0px #000000;
+}
+
+#popup_foreground_window_white_layer2 {
+	background-color: #FFFFFF;
+	border-color: #0191FF;
+	border-style: solid;
+	border-width: 1px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-bottom: 6px;
+	-moz-box-shadow: 0px 0px 30px 0px #000000;
+	-webkit-box-shadow: 0px 0px 30px 0px #000000;
+	box-shadow: 0px 0px 30px 0px #000000;
+}
+
+#popup_foreground_window_white_layer3 {
+	background-color: #FFFFFF;
+	border-color: #0191FF;
+	border-style: solid;
+	border-width: 1px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-bottom: 6px;
+	-moz-box-shadow: 0px 0px 30px 0px #000000;
+	-webkit-box-shadow: 0px 0px 30px 0px #000000;
+	box-shadow: 0px 0px 30px 0px #000000;
+}
+
+a.popup_closex_white {
+	display: block;
+	width: 30px;
+	height: 30px;
+	text-decoration: none;
+	margin-right: 1px;
+	background-color: #FFFFFF;
+	background-image: url("https://portal.svsd.net/_Images/CloseX_Lync60x30px_White.png");
+}
+
+a.popup_closex_white:hover {
+	background-position: -30px 0;
+}
+
+/* ================================================================================================ */
+/* FOR WELCOME BAR */
+/* ================================================================================================ */
+
+a.popup_closex_blue {
+	display: block;
+	width: 30px;
+	height: 30px;
+	text-decoration: none;
+	margin-right: 1px;
+	background-color: #FFFFFF;
+	background-image: url("https://portal.svsd.net/_Images/CloseX_Lync60x30px_Blue.png");
+}
+
+a.popup_closex_blue:hover {
+	background-position: -30px 0;
+}
+
+/* ================================================================================================ */
+/* FOR EXPLODE EFFECT */
+/* ================================================================================================ */
+
+[class^=ui-effects] {
+    z-index: 10;
+}
+
+/* ========================================================= */
+/* HOVER ONLY */
+/* ========================================================= */
+
+.hoveronlylink, .hoveronlylink:visited, .hoveronlylink:active {
+  color: #333333;
+  text-decoration: none;
+  border-bottom: 1px #0072C6 dotted;
+}
+
+.hoveronlylink:hover {
+  border-bottom: 1px #333333 dotted;
+}
+
+/* ========================================================= */
+/* WHITELINK CLASS */
+/* ========================================================= */
+
+.whitelink {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.whitelink:hover {
+	text-decoration: underline;
+}
+
+/* ========================================================= */
+/* WHITELINK8 CLASS */
+/* ========================================================= */
+
+.whitelink8 {
+	color: #FFFFFF;
+	text-decoration: none;
+	font-size: 10pt;
+}
+
+.whitelink8:hover {
+	text-decoration: underline;
+}
+
+/* ========================================================= */
+/* GREYLINK8 CLASS */
+/* ========================================================= */
+
+.greylink8 {
+	color: #333333;
+	text-decoration: none;
+	font-size: 10pt;
+}
+
+.greylink8:hover {
+	text-decoration: underline;
+}
+
+/* ========================================================= */
+/* BLUE HEADER CLASS */
+/* ========================================================= */
+
+.blueheader {
+	height: 30px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	background-color: #0072C6;
+	border-left: 1px solid #0072C6;
+	border-right: 1px solid #0072C6;
+	border-top: 3px solid #00599E;
+	border-bottom: 1px solid #00599E;
+	background: url('https://portal.svsd.net/_Images/BlueHeaderGradient.png');
+}
+
+/* ========================================================= */
+/* TOOLTIP FOR CLASSES AND TERMS */
+/* ========================================================= */
+
+a.tooltip {
+	z-index: 99997;
+	position: relative; /* relative positioning is bad in ie, makes dropdown disappear? */
+	padding-bottom: 4px;
+}
+
+a:hover.tooltip {
+	text-decoration: none;
+	background-color: transparent; /* this is for whatever reason important for ie6 dropdown or else it doesn't work at all*/
+}
+
+a.tooltip span {
+    z-index: 99998;
+    display: none;
+}
+
+a:hover.tooltip span {
+    display: inline;
+    position: absolute;
+    left: 0px;
+    top: 16px; /* 18px; needs to be close enough to not disappear on older browsers IE6/IE7 */
+}
+
+/* ================================================================================================ */
+/* BLUEHOVER CLASS */
+/* ================================================================================================ */
+
+.bluehover {
+	font-size: 10pt;
+	z-index: 99998;
+	display: block;
+	padding: 6px;
+	color: white;
+	text-decoration: none;
+	background-color: #0072C6;
+	border-left: 2px solid #FFFFFF;
+	border-right: 2px solid #FFFFFF;
+	border-bottom: 2px solid #FFFFFF;
+}
+
+.bluehover:hover {
+	background-color: #1E82CC;
+	text-decoration: none;
+}
+
+.bluehover:active {
+	background-color: #1E99CC;
+}
+
+/* ========================================================= */
+/* TOOLTIPSTUDENT */
+/* ========================================================= */
+
+a.tooltipstudent {
+	z-index: 99997;
+	position: relative; /* relative positioning is bad in ie, makes dropdown disappear? */
+	padding-bottom: 4px;
+}
+
+a:hover.tooltipstudent {
+	text-decoration: none;
+	background-color: transparent; /* this is for whatever reason important for ie6 dropdown or else it doesn't work at all*/
+}
+
+a.tooltipstudent span {
+    z-index: 99998;
+    display: none;
+}
+
+a:hover.tooltipstudent span {
+    display: inline;
+    position: absolute;
+    left: 0px;
+    top: 38px; /* needs to be close enough to not disappear on older browsers IE6/IE7 */
+}
+
+/* ========================================================= */
+/* TABLE TOOLTIPSTUDENT */
+/* ========================================================= */
+
+table.tabletooltipstudent {
+	z-index: 99997;
+	position: relative; /* relative positioning is bad in ie, makes dropdown disappear? */
+	padding-bottom: 4px;
+	cursor: pointer;
+}
+
+table:hover.tabletooltipstudent {
+	text-decoration: none;
+	background-color: transparent; /* this is for whatever reason important for ie6 dropdown or else it doesn't work at all*/
+}
+
+table.tabletooltipstudent span {
+    z-index: 99998;
+    display: none;
+}
+
+table:hover.tabletooltipstudent span {
+    display: inline;
+    position: absolute;
+    left: 0px;
+    top: 38px; /* needs to be close enough to not disappear on older browsers IE6/IE7 */
+}
+
+/* ================================================================================================ */
+/* STUDENTHOVER CLASS */
+/* ================================================================================================ */
+
+.studenthover {
+	font-size: 10pt;
+	z-index: 99998;
+	display: block;
+	padding: 6px;
+	color: white;
+	text-decoration: none;
+	background-color: #0072C6;
+	border-left: 2px solid #FFFFFF;
+	border-right: 2px solid #FFFFFF;
+	border-bottom: 2px solid #FFFFFF;
+}
+
+.studenthover:hover {
+	background-color: #1E82CC;
+	text-decoration: none;
+}
+
+.studenthover:active {
+	background-color: #1E99CC;
+}
+
+/* ================================================================================================ */
+/* WELCOME CLASS */
+/* ================================================================================================ */
+
+a.rollover_welcome {
+	font-family: Arial;
+	font-size: 10pt;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border-right-style: solid;
+	border-right-color: #518BAF;
+	border-right-width: 1px;
+	background: url('https://portal.svsd.net/_Images/Welcome.gif');
+}
+
+a.rollover_welcome:hover {
+	background-position: -22px 0;
+}
+
+/* ================================================================================================ */
+/* TAB0 CLASS */
+/* ================================================================================================ */
+
+.tab0 {
+	font-family: Arial;
+	font-size: 9pt;
+	color: #FFFFFF;
+	display: inline-block;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	border-right-style: solid;
+	/*border-right-color: #61AEE3;*/
+	/*border-right-color: #075399;*/
+	border-right-color: #527FA8;
+	border-right-width: 1px;
+	text-decoration: none;
+}
+
+.tab0:hover {
+	text-decoration: underline;
+}
+
+/* ================================================================================================ */
+/* TAB1 CLASS */
+/* ================================================================================================ */
+
+.tab1 {
+	font-family: Arial;
+	font-size: 10pt;
+	/*color: #31556B;*/
+	color: #FFFFFF;
+	display: inline-block;
+	text-decoration: none;
+	
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.tab1:hover {
+	text-decoration: none;
+	background: url("https://portal.svsd.net/_Images/OpacityWhite1px_20.png");
+}
+
+/* ================================================================================================ */
+/* TAB2 CLASS */
+/* ================================================================================================ */
+
+.tab2 {
+	font-size: 11pt;
+	/*color: #31556B;*/
+	color: #FFFFFF;
+	display: inline-block;
+	font-weight: bold;
+	
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.tab2:hover {
+	text-decoration: none;
+}
+
+/* ================================================================================================ */
+/* STUDENTDROPDOWN */
+/* ================================================================================================ */
+
+.studentdropdown {
+	padding-left: 18px;
+	padding-right: 28px;
+	padding-top: 2px;
+	padding-bottom: 5px;
+	background: #FFFFFF;
+}
+
+.studentdropdown:hover {
+	background: #EEEEEE;
+	cursor: pointer;
+}
+
+/* ================================================================================================ */
+/* TAB_FEEDBACK CLASS */
+/* ================================================================================================ */
+
+.tab_feedback {
+	font-family: Arial;
+	font-size: 12px;
+	color: white;
+	display: inline-block;
+	line-height: 18px;
+
+	padding-left: 10px;
+	padding-right: 10px;
+
+	padding-top: 8px;
+	padding-bottom: 8px;
+	
+/*
+	border-left-style: solid;
+	border-left-color: #484848;
+	border-left-width: 1px;
+*/
+	text-decoration: none;
+	background-image: url('https://portal.svsd.net/_Images/Toolbar.png');
+	background-position: 0px 0px;
+}
+
+.tab_feedback:hover {
+	background-position: 0px -35px;
+	text-decoration: none;
+}
+
+/*
+.tab_feedback:active {
+	background-position: 0px -70px;
+	text-decoration: none;
+}
+*/
+
+/* ================================================================================================ */
+/* TEXTBOX1 CLASS */
+/* ================================================================================================ */
+
+.textbox1 {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	-webkit-appearance: none;
+	padding: 3px;
+}
+
+.textbox1:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* TEXTBOX1_NOHEIGHTPADDING CLASS */
+/* ================================================================================================ */
+
+.textbox1_noheightpadding {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	-webkit-appearance: none;
+}
+
+.textbox1_noheightpadding_nohover {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	-webkit-appearance: none;
+}
+
+.textbox1_noheightpadding:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* TEXTAREA1 CLASS */
+/* ================================================================================================ */
+
+.textarea1 {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	padding: 3px;
+	-webkit-appearance: none;
+}
+
+.textarea1:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* TEXTAREA1_LP CLASS */
+/* ================================================================================================ */
+
+.textarea1_lp {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 0px solid #CCCCCC;
+	padding: 0px;
+	-webkit-appearance: none;
+	background: whitesmoke;
+}
+
+.textarea1_lp:hover {
+	/*border: 1px solid #D26B2D;*/
+}
+
+/* ================================================================================================ */
+/* TEXTAREA1_NOHEIGHTPADDING CLASS */
+/* ================================================================================================ */
+
+.textarea1_noheightpadding {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	-webkit-appearance: none;
+}
+
+.textarea1_noheightpadding_nohover {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	-webkit-appearance: none;
+}
+
+.textarea1_noheightpadding:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* DROPDOWN1 CLASS */
+/* ================================================================================================ */
+
+.dropdown1 {
+	font-family: Arial;
+	font-size: 10pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	padding: 3px;
+}
+
+.dropdown1:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* DROPDOWN1_NOHEIGHTPADDING CLASS */
+/* ================================================================================================ */
+
+.dropdown1_noheightpadding {
+	font-family: Arial;
+	font-size: 10pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+}
+
+.dropdown1_noheightpadding:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* BUTTON1 CLASS */
+/* ================================================================================================ */
+
+.button1 {
+	background-color: #0072C6;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: normal;
+	padding: 6px 0px;
+    width: 172px;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+}
+
+.button1:hover {
+	background-color: #1E82CC;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.button1:active {
+	background-color: #1E99CC;
+}
+
+/* ================================================================================================ */
+/* BUTTON1_ORANGE CLASS */
+/* ================================================================================================ */
+
+.button1_orange {
+	background-color: #DE8C19;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: normal;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 0px;
+	padding-right: 0px;
+    width: 172px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button1_orange:hover {
+	background-color: #E9A037;
+	text-decoration: none;
+}
+
+.button1_orange:active {
+	background-color: #DE8C19;
+}
+
+/* ================================================================================================ */
+/* BUTTON1_RED CLASS */
+/* ================================================================================================ */
+
+.button1_red {
+	background-color: #DC0000;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: normal;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 0px;
+	padding-right: 0px;
+    width: 172px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button1_red:hover {
+	background-color: #FF0000;
+	text-decoration: none;
+}
+
+.button1_red:active {
+	background-color: #DC0000;
+}
+
+/* ================================================================================================ */
+/* BUTTON2 CLASS */
+/* ================================================================================================ */
+
+.button2 {
+	background-color: #0072C6;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-weight: normal;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button2:hover {
+	background-color: #1E82CC;
+	text-decoration: none;
+}
+
+.button2:active {
+	background-color: #0072C6;
+}
+
+/* ================================================================================================ */
+/* BUTTON3 CLASS */
+/* ================================================================================================ */
+
+.button3 {
+	background-color: #0072C6;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-weight: normal;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	padding-right: 0px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button3:hover {
+	background-color: #1E82CC;
+	text-decoration: none;
+}
+
+.button3:active {
+	background-color: #0072C6;
+}
+
+/* ================================================================================================ */
+/* BUTTON3_CYAN CLASS */
+/* ================================================================================================ */
+
+.button3_cyan {
+	/*background-color: #FFFF80;*/
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-weight: normal;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button3_cyan:hover {
+	background-color: #2A8AD4;
+	text-decoration: none;
+}
+
+.button3_cyan:active {
+	background-color: #2A8AD4;
+}
+
+/* ================================================================================================ */
+/* BUTTON3_CYAN_NOINLINEBLOCK CLASS */
+/* ================================================================================================ */
+
+.button3_cyan_noinlineblock {
+	/*background-color: #FFFF80;*/
+	border-style: none;
+	/*display: inline-block;*/
+	color: #ffffff;
+	font-family: Arial;
+	font-weight: normal;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button3_cyan_noinlineblock:hover {
+	background-color: #2A8AD4;
+	text-decoration: none;
+}
+
+.button3_cyan_noinlineblock:active {
+	background-color: #2A8AD4;
+}
+
+/* ================================================================================================ */
+/* BUTTON4 CLASS */
+/* ================================================================================================ */
+
+.button4 {
+	background-color: #DE8C19;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-weight: normal;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	padding-right: 0px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button4:hover {
+	background-color: #E9A037;
+	text-decoration: none;
+}
+
+.button4:active {
+	background-color: #DE8C19;
+}
+
+/* ================================================================================================ */
+/* HIGHLIGHTCELL_WHITE CLASS */
+/* ================================================================================================ */
+
+.highlightcell_white {
+	background-color: #FFFFFF;
+}
+
+.highlightcell_white:hover {
+	background-color: yellow;
+}
+
+/* ================================================================================================ */
+/* HIGHLIGHTCELL_YELLOW CLASS */
+/* ================================================================================================ */
+
+.highlightcell_yellow {
+	background-color: #FFFFEA;
+}
+
+.highlightcell_yellow:hover {
+	background-color: yellow;
+}
+
+/* ================================================================================================ */
+/* HIGHLIGHTCELL_CYAN CLASS */
+/* ================================================================================================ */
+
+.highlightcell_cyan {
+	background-color: #CCFFFF;
+}
+
+.highlightcell_cyan:hover {
+	background-color: #9FFFFE;
+}
+
+/* ================================================================================================ */
+
+@media print {
+	.noprint {
+		display: none;
+	}
+	.pagebody {
+		background: #FFFFFF;
+	}
+	.pagewidth {
+		width: 900px;
+	}
+	.pagewidth2 {
+		width: 900px;
+	}
+	.pageshadow {
+	}
+	.pagepadding {
+		padding-left: 0px;
+		padding-right: 0px;
+
+	}
+	.misc1 {
+		height: 17px;
+	}
+}
+
+@media screen {
+	.noscreen {
+		display: none;
+	}
+	.pagebody {
+		/*background: #333333;*/
+	}
+	.pagewidth {
+
+		width: 960px;
+		margin-left: -480px;
+		left: 50%;
+
+	}
+	.pagewidth2 {
+
+		width: 960px;
+
+	}
+	.pageshadow {
+
+		/*
+		-moz-box-shadow: 0px 0px 30px 0px #191919;
+		-webkit-box-shadow: 0px 0px 30px 0px #191919;
+		box-shadow: 0px 0px 30px 0px #191919;
+		*/
+
+	}
+	.pagepadding {
+
+		padding-left: 30px;
+		padding-right: 30px;
+
+	}
+	.misc1 {
+		height: 25px;
+	}
+}
+
+@page {
+	margin: 0.5in;
+}
+
+</style>
+
+<script type="text/javascript">
+
+	mytab = '#taba';
+	
+	mycontentwrappertable = '#content_wrapper_table';
+	myloadingtable = '#loading_table';
+	
+   	popup_background_zindex2 = '#popup_background_zindex2';
+   	popup_foreground_zindex3 = '#popup_foreground_zindex3';
+   	popup_foreground_zindex3_inject = '#popup_foreground_zindex3_inject';
+   	
+   	popup_background_zindex2b = '#popup_background_zindex2b';
+   	popup_foreground_zindex3b = '#popup_foreground_zindex3b';
+   	popup_foreground_zindex3b_inject = '#popup_foreground_zindex3b_inject';
+   	
+   	popup_background_zindex4 = '#popup_background_zindex4';
+   	popup_foreground_zindex5 = '#popup_foreground_zindex5';
+   	popup_foreground_zindex5_inject = '#popup_foreground_zindex5_inject';
+   	
+   	popup_background_zindex4b = '#popup_background_zindex4b';
+   	popup_foreground_zindex5b = '#popup_foreground_zindex5b';
+   	popup_foreground_zindex5b_inject = '#popup_foreground_zindex5b_inject';
+   	
+   	popup_background_zindex6 = '#popup_background_zindex6';
+   	popup_foreground_zindex7 = '#popup_foreground_zindex7';
+   	popup_foreground_zindex7_inject = '#popup_foreground_zindex7_inject';
+   	
+	popup_foreground_window_white = '#popup_foreground_window_white';
+	popup_foreground_window_white_layer2 = '#popup_foreground_window_white_layer2';
+	popup_foreground_window_white_layer3 = '#popup_foreground_window_white_layer3';
+	
+	frm_Main = '#frm_Main';
+   	
+	showDots = 0;
+
+	var showLoadingDots = function()
+	{
+		var showDots = setInterval(
+			function()
+			{
+
+				if ($("#loadingDots").length&gt;0)
+				{
+
+					var dots = '........................................................................',i=1;
+
+					if ($("#loadingDots").html().length==0 || ($("#loadingDots").html().length == dots.length))
+					{
+						$("#loadingDots").html('');
+						var i = 1;
+					}
+					else
+					{
+						i++;
+					}
+					$("#loadingDots").html($("#loadingDots").html()+".");
+				}
+				else
+				{
+
+					clearInterval(showDots);
+				}
+			}
+			,50
+		);
+
+	}
+
+	var showLoadingDots2 = function()
+	{
+		var showDots = setInterval(
+			function()
+			{
+
+				if ($("#loadingDots2").length&gt;0)
+				{
+
+					var dots = '........................................................................',i=1;
+
+					if ($("#loadingDots2").html().length==0 || ($("#loadingDots2").html().length == dots.length))
+					{
+						$("#loadingDots2").html('');
+						var i = 1;
+					}
+					else
+					{
+						i++;
+					}
+					$("#loadingDots2").html($("#loadingDots2").html()+".");
+				}
+				else
+				{
+
+					clearInterval(showDots);
+				}
+			}
+			,50
+		);
+
+	}
+
+
+</script>
+<style>
+.qtip{position:absolute;left:-28000px;top:-28000px;display:none;max-width:600px;min-width:50px;font-size:10.5px;line-height:12px;direction:ltr;box-shadow:none;padding:0}.qtip-content{position:relative;padding:5px 9px;overflow:hidden;text-align:left;word-wrap:break-word}.qtip-titlebar{position:relative;padding:5px 35px 5px 10px;overflow:hidden;border-width:0 0 1px;font-weight:700}.qtip-titlebar+.qtip-content{border-top-width:0!important}.qtip-close{position:absolute;right:-9px;top:-9px;cursor:pointer;outline:medium none;border-width:1px;border-style:solid;border-color:transparent}.qtip-titlebar .qtip-close{right:4px;top:50%;margin-top:-9px}* html .qtip-titlebar .qtip-close{top:16px}.qtip-titlebar .ui-icon,.qtip-icon .ui-icon{display:block;text-indent:-1000em;direction:ltr}.qtip-icon,.qtip-icon .ui-icon{-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;text-decoration:none}.qtip-icon .ui-icon{width:18px;height:14px;line-height:14px;text-align:center;text-indent:0;font:400 bold 10px/13px Tahoma,sans-serif;color:inherit;background:transparent none no-repeat -100em -100em}.qtip-focus{}.qtip-hover{}.qtip-default{border-width:1px;border-style:solid;border-color: #F1D031;background-color: #FFFFA3;color: #555}.qtip-default .qtip-titlebar{background-color: #FFEF93}.qtip-default .qtip-icon{border-color: #CCC;background:#F1F1F1;color: #777}.qtip-default .qtip-titlebar .qtip-close{border-color: #AAA;color: #111}
+
+.rowhover:hover {
+	background: #EEEEEE;
+	cursor: pointer;
+}
+
+.hoverblue:hover {
+	background-color: #2A8AD4;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.hoverimg {
+	padding: 3px;
+}
+
+.hoverimg:hover {
+	padding: 2px;
+	//border: 1px solid #999999;
+	border: 1px solid #0075CC;
+	//background-color: yellow;
+}
+
+</style>
+
+
+<style type="text/css">
+
+
+@font-face {
+  font-family: 'senecaValleyCustomIconFont';
+  src: url("data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg8SBhUAAAC8AAAAYGNtYXAXVtKUAAABHAAAAFRnYXNwAAAAEAAAAXAAAAAIZ2x5Zn8cbDEAAAF4AAAJNGhlYWQNW2NnAAAKrAAAADZoaGVhB8UD0QAACuQAAAAkaG10eD4AAokAAAsIAAAASGxvY2ERwg6YAAALUAAAACZtYXhwABgAwQAAC3gAAAAgbmFtZV01SMYAAAuYAAACanBvc3QAAwAAAAAOBAAAACAAAwPeAZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADpDQPA/8AAQAPAAEAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAOAAAAAoACAACAAIAAQAg6Q3//f//AAAAAAAg6QD//f//AAH/4xcEAAMAAQAAAAAAAAAAAAAAAQAB//8ADwABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAACAAoAeAP2AwwABAAJAAABFwEnAQMHATcBA1ag/gyhAfW3of4MoQH0Awyg/gygAfT+DKAB9KD+DAAAAAABAND/wAMwA8AAGAAABREzNyM1NDY7ATUqASMiDgIdASMVMxEzAlDAIOAwMGAYXio8VTYZwMDAQAHAwGAwMMAjQl88gMD+QQACACAADQPwA4kABQAOAAAJAicJAQcTBycHFwcDAQPw/g/+JQQB2wHwdQrzB/MH8woBZQGEAWv+eZoBh/6VkP6UB/MH8wcBbAEcAAAABQAN/80EAAPAAEgAkQCmALIAvgAAATIWFx4BFx4BFx4BFx4BFx4BFRQGBw4BBw4BBw4BBw4BBw4BIyImJy4BJy4BJy4BJy4BJy4BNTQ2Nz4BNz4BNz4BNz4BNz4BMzUiBgcOAQcOAQcOAQcOAQcOARUUFhceARceARceARceARceATMyNjc+ATc+ATc+ATc+ATc+ATU0JicuAScuAScuAScuAScuASMVIg4CFRQeAjMyPgI1NC4CIxEiJjU0NjMyFhUUBgEUBiMiJjU0NjMyFgIHZT8oJSsOEhsNDRIHBQoCAgEBAgIKBQcSDQ0cEQ4rJSg/ZWU/KCUsDRIbDQ0SBwULAQIBAQICCgUHEg0NGxINLCUnQGVnQSgpOhgZLBUVGwoKDAIBAgIBAg0JChsVFSwZGDooKUFnZkEpKDoZGSsVFRwJCgwCAgEBAgIMCgkcFRUrGRk6KChBZzZeRykpR142Nl5HKChHXjZGY2NGRmJiAQQjGhkjIxkaIwNlAQICCgUHEg0NHBEOKyUoP2VlPyglLA0SGw0NEgcFCwECAQECAgoFBxINDRsSDSwlKD9lZT8oJSsOEhsNDRIHBQoCAgFbAQICDAoJHBUVKxkZOigpQWZnQSkoOhgZLBUVGwoKDAIBAgIBAg0JChsVFSwZGDooKUFnZkEpKDoZGSsVFRwJCgwCAgH2KUZfNTZfRikpRl82NV9GKf5UY0ZFY2NFRmMBthkjIxkaIyMAAAMAAABXBAADKgADAAcACwAAEyEVIRUhFSEVIRUhAAQA/AAEAPwABAD8AAMqtVq1WrUAAAABAKgAEANnA28AAgAANxEBqAK/EANf/lAAAAAAAQCmABIDZQNxAAIAADcRAaYCvxIDX/5QAAAAAAIAF//QA/ADqgAcADEAAAEjJz4BNTQuAiMiDgIVFB4CMzI2NxcVATcBISIuAjU0PgIzMh4CFRQOAiMC1i0QKjA6Y4VMTIZjOTljhkxDey4RARlV/ub+rzVdRCgoRF01NF1EKChEXTQBPxAvekRMhWM6OmOFTEyGYzkwKhEt/uZVARonRVw1NVxFJydFXDU1XEUnAAACABX/0gPuA6wAHAAxAAABIyc+ATU0LgIjIg4CFRQeAjMyNjcXFQE3ASEiLgI1ND4CMzIeAhUUDgIjAtQtECowOmOFTEyGYzk5Y4ZMQ3suEQEZVf7m/q81XUQoKERdNTRdRCgoRF00AUEQL3pETIVjOjpjhUxMhmM5MCoRLf7mVQEaJ0VcNTVcRScnRVw1NVxFJwAAAQAA/+cD+gOhAKoAAAUqASMxKgExIiYnLgEnLgEjIgYHDgEjIiYnLgEnLgEnLgEnIiY1NDYzPgM3OAExPgEnLgEnLgEjLgE3PgEzOgEXHgEzMjY1NCY1LgE3PgMzOgExMzIeAhcWBgcVFAYVHgEXMTI2NzYyMzIWFzEeARUUBgcOASMOAQcGFhc4ATEUHgIXMhYHFAYHDgEHDgEHDgEHDgErASImJy4BIyIGBw4BBw4BIwIEAQYBAgItPx0UJxULFQkTHAsGCwMFCAECAwIDBwZINAUBAQUDN1E1GwEGAwMHKREFBgMhDgECGQwDBwMPGgwPEAIDAhEYSEg+EAERAhA+SUgZEQIDAgINDgsYDgUIAwUJBQsNERwDBgURKQgEAwgaNVA4BAUBAQEFNEgGBgUBAwIBBwYCAwsHDBwRCxMLFScUGj4tGSEUDhcEAgIEAgEDBAYGDQYPEAIKHAsCAgQGCjo+MgIOGAkTEgQCAg0YBg4PAgYICAIIDwg0dCU3QCAICCBANyV0NAIIDQgCBwEIBgICAgUOCAcVDQEDBBITCRgOAjI+OQkHAwIDAQscCgIQDwYMBQQGAQEDAwICAxgOFCEAAAAAAwAF//wEAgN+AAMADAArAAAlJwczAxMjJyMHIxMzARUhFSMOAwcXBycHJzcuASczHgEXPgE3ITUhNTMDT0pKlB7RWTfaN1vRWv51AUeHDSIrNSB0IZDpP+kuRBVZEjUkNkkV/fkBR1rcwMABO/3lh4cCGwFnWVkkSktKJHVWieA+5DRkMyNNJjl/O1hZAAAAAwAD//4EAAOAAAMADAArAAAlJwczAxMjJyMHIxMzARUhFSMOAwcXBycHJzcuASczHgEXPgE3ITUhNTMDTUpKlB7RWTfaN1vRWv51AUeHDSIrNSB0IZDpP+kuRBVZEjUkNkkV/fkBR1rewMABO/3lh4cCGwFnWVkkSktKJHVWieA+5DRkMyNNJjl/O1hZAAAAAQAAAB8EAQNgAEcAAAEOAQc+ATcOAQcuASMiDgIVFBYXLgMnDgEVFBYXLgEnMBQxFBYXDgEjIiYnHgEXDgEjIiYnHgMzMj4CNTQmNT4BNwQBHD0gITAMH0MkHU8tLEw6IQMDQntuYCcNDzMrGjAWYUgNHA4LEwoUbEU2hkoMGQ0jTFFWLZHfmE4BHzUVAv4NEQQUPCUSGgceJCE5TSsNGAsDIjlOMBg1HTdcHAEOCwJNcw8DBAICP1IBKjABAhcjGA1trNVoBw4HFjcgAAAAAAIAAABaBAADJgA5AD0AAAEwJicuAScuAiIxMCIOAQcOAQcOATEwBh0BFBYxMBYXHgEXHgIyMTAWMjY3PgE3PgExMDY9ATQmARENAQP2EhccOxA1fmtISGt+NRA7HBcSCgoSFxxDEh90c1ZIa341EDscFxIKCv2BARL+7gKJUBcfCwIEBAICBAQCCx8XUFg+Zj5cTxcfCwMCAwEBBAMDCx8XT1w+Zj5Y/q4BEomJAAAAAQAAAAEAAG7FyPlfDzz1AAsEAAAAAADVHQ91AAAAANUdD3UAAP/ABAIDwAAAAAgAAgAAAAAAAAABAAADwP/AAAAEAAAA//4EAgABAAAAAAAAAAAAAAAAAAAAEgQAAAAAAAAAAAAAAAIAAAAEAAAKBAAA0AQAACAEAAANBAAAAAQAAKgEAACmBAAAFwQAABUEAAAABAAABQQAAAMEAAAABAAAAAAAAAAACgAUAB4APABgAIYBnAG2AcQB0gIcAmYDSgOSA9oEQgSaAAAAAQAAABIAvwAFAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA4ArgABAAAAAAABABoAAAABAAAAAAACAAcBCwABAAAAAAADABoAbwABAAAAAAAEABoBIAABAAAAAAAFAAsATgABAAAAAAAGABoAvQABAAAAAAAKABoBbgADAAEECQABADQAGgADAAEECQACAA4BEgADAAEECQADADQAiQADAAEECQAEADQBOgADAAEECQAFABYAWQADAAEECQAGADQA1wADAAEECQAKADQBiHNlbmVjYVZhbGxleUN1c3RvbUljb25Gb250AHMAZQBuAGUAYwBhAFYAYQBsAGwAZQB5AEMAdQBzAHQAbwBtAEkAYwBvAG4ARgBvAG4AdFZlcnNpb24gMS4wAFYAZQByAHMAaQBvAG4AIAAxAC4AMHNlbmVjYVZhbGxleUN1c3RvbUljb25Gb250AHMAZQBuAGUAYwBhAFYAYQBsAGwAZQB5AEMAdQBzAHQAbwBtAEkAYwBvAG4ARgBvAG4AdHNlbmVjYVZhbGxleUN1c3RvbUljb25Gb250AHMAZQBuAGUAYwBhAFYAYQBsAGwAZQB5AEMAdQBzAHQAbwBtAEkAYwBvAG4ARgBvAG4AdFJlZ3VsYXIAUgBlAGcAdQBsAGEAcnNlbmVjYVZhbGxleUN1c3RvbUljb25Gb250AHMAZQBuAGUAYwBhAFYAYQBsAGwAZQB5AEMAdQBzAHQAbwBtAEkAYwBvAG4ARgBvAG4AdEZvbnQgZ2VuZXJhdGVkIGJ5IEljb01vb24uAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.seneca-icon-font {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'senecaValleyCustomIconFont' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  
+}
+
+</style>
+
+</head>
+
+<body class="pagebody" text="#333333" link="#4C7A98" vlink="#4C7A98" alink="#4C7A98" topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
+
+<noscript>
+&lt;table border="0" width="100%" cellpadding="0" style="border-collapse: collapse"&gt;
+	&lt;tr&gt;
+		&lt;td align="center"&gt;&amp;nbsp;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td align="center"&gt;&lt;font color="#FFFFFF"&gt;Please enable JavaScript to use this website&lt;/font&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td align="center"&gt;&lt;span style="font-size: 6pt;"&gt;&amp;nbsp;&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</noscript>
+
+
+	<div id="popup_background_zindex2b"></div>
+	<div id="popup_foreground_zindex3b">
+		<div id="popup_foreground_zindex3b_inject" style="height: 100%;">
+		</div>
+	</div>
+
+	<div id="popup_background_zindex4b"></div>
+	<div id="popup_foreground_zindex5b">
+		<div id="popup_foreground_zindex5b_inject" style="height: 100%;">
+		</div>
+	</div>
+
+	<div id="popup_background_zindex6b"></div>
+	<div id="popup_foreground_zindex7b">
+		<div id="popup_foreground_zindex7b_inject" style="height: 100%;">
+		</div>
+	</div>
+
+					<div align="center" style="background-color:  #0F4E91; ">
+					<table class="noprint" border="0" width="960px" cellspacing="0" cellpadding="0" height="130px" style="background: url('https://portal.svsd.net/_Images/HeaderNew.png'); margin-top:2px;">
+						<tbody><tr>
+							<td align="left" nowrap="" rowspan="3" width="589" height="114" valign="top"> </td>
+							<td align="right" height="20" width="371" valign="top">
+
+								<table border="0" cellpadding="0" style="border-collapse: collapse">
+									<tbody><tr>
+										<td style="height: 18px;" background="https://portal.svsd.net/_Images/UpperRightToolbar_1x30px.png"><a class="tab0" style="border-right: 0px;" href="https://portal.svsd.net/SignOut.asp">Sign out vlasnikds</a></td>
+									</tr>
+								</tbody></table>
+
+							</td>
+						</tr>
+						<tr>
+							<td align="center" height="74" width="371"></td>
+						</tr>
+						<tr>
+							<td align="left" nowrap="" height="20" width="371"><span style="font-size: 4pt">  </span></td>
+						</tr>
+					</tbody></table>
+					</div>
+
+					<div class="noprint" align="center" style="background-color:  #0971CE;  border-bottom: 1px solid #3E3E48;">
+					<table class="noprint" border="0" width="960" height="54" cellpadding="0" style="border-collapse: collapse;" bgcolor="#0971CE">
+						<tbody><tr>
+							<td nowrap="" width="100%">
+
+					<table class="noprint" border="0" width="100%" height="54" cellpadding="0" cellspacing="0" style="border-collapse: collapse;" bgcolor="#0971CE">
+						<tbody><tr>
+							<td class="toolbar-button" style="font-size: 12pt; font-family: Arial, Work Sans; color: white; padding-left: 16px; padding-right: 16px;" align="center" onclick="window.location.href = 'Grades.asp';"><b>Grades</b></td>
+							<td class="toolbar-button" style="font-size: 12pt; font-family: Arial, Work Sans; color: white; padding-left: 16px; padding-right: 16px;" align="center" onclick="window.location.href = 'Calendar.asp';"><b>Calendar</b></td>
+
+							<td class="toolbar-button" style="font-size: 12pt; font-family: Arial, Work Sans; color: white; padding-left: 16px; padding-right: 16px;" align="center" onclick="window.location.href = 'Portfolio.asp';"><b>Portfolio</b></td>
+
+							<td class="toolbar-button" style="font-size: 12pt; font-family: Arial, Work Sans; color: white; padding-left: 16px; padding-right: 16px;" align="center" onclick="window.open('https://portal.svsd.net/students/resources.asp');"><b>Resources</b></td>
+
+							<td nowrap="" width="100%"> </td>
+						</tr>
+					</tbody></table>
+
+							</td>
+						</tr>
+					</tbody></table>
+					</div>
+
+	<div style="background-color: white;">
+	<!-- MAIN WRAPPER DIV HEADER START -->
+	<div class="pagewidth" id="main_wrapper" align="center" style_break="position: absolute;" style="margin: 0 auto;">
+
+		<div id="main_wrapper2" class="pageshadow">
+			<table border="0" class="pagewidth2" cellpadding="0" style="border-collapse: collapse;">
+				<tbody><tr>
+					<td align="left">
+	<!-- MAIN WRAPPER DIV HEADER END -->
+
+					<script>$("#div_loading").hide();</script>
+	<!-- CONTENT WRAPPER TABLE HEADER START -->
+	<table border="0" width="100%" height="100%" cellpadding="0" bgcolor="#FFFFFF" style="border-collapse: collapse;" id="content_wrapper_table">
+		<tbody><tr>
+			<td class="pagepadding">
+				<div style="float: left; width: 100%; height: 100%; background: #FFFFFF; position: relative; display: block; z-index: 1;">
+	<!-- CONTENT WRAPPER TABLE HEADER END -->
+
+				<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse;">
+					<tbody><tr>
+						<td align="left" valign="bottom" style="height: 17px;" nowrap=""><font style="font-size: 8pt;"> </font></td>
+					</tr>
+				</tbody></table>
+
+				<table border="0" cellpadding="0" style="border-collapse: collapse;">
+					<tbody><tr>
+						<td class="titletext">
+Grades 
+						</td>
+					</tr>
+				</tbody></table>
+				<table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+					<tbody><tr>
+						<td width="100%" align="left"><img border="0" src="https://portal.svsd.net/_Images/1pxTrans.gif" width="18" height="18" /></td>
+					</tr>
+				</tbody></table>
+
+<script>$("#div_loading2").hide();</script>
+
+<div id="pagecontent">
+			<form method="POST" action="Grades_POST.asp" id="frm_Grades" name="frm_Grades">
+
+				<table border="0" cellpadding="0" style="border-collapse: collapse" width="900">
+					<tbody><tr>
+						<td align="left"><div id="div_calendar">
+			<table cellspacing="0" cellpadding="2" border="1" bordercolor="#999999" style="border-collapse: collapse; border-bottom: 3px solid #999999;" width="900">
+				<tbody><tr>
+					<td class="blueheader" width="100%" align="center" colspan="7" style="background-color: #0072C6; padding-left: 0px; padding-right: 0px;">
+						<table border="0" cellpadding="0" style="border-collapse: collapse; height: 30px;">
+							<tbody><tr>
+								<td width="110"> </td>
+								<td width="194" align="left"> </td>
+								<td width="30" align="center" class="hoverblue" onclick="loadcalendar('Grades_CalendarWeek.asp?a=1');"><b><font color="#FFFFFF">&lt;</font></b></td>
+								<td width="230" align="center"><font color="#FFFFFF"><b>Week of Dec 30 - Jan 5<br /></b></font></td>
+								<td width="30" align="center" class="hoverblue" onclick="loadcalendar('Grades_CalendarWeek.asp?a=2');"><b><font color="#FFFFFF">&gt;</font></b></td>
+								<td width="194" align="left"> </td>
+								<td width="110" align="right">
+									<table class="hoverblue" border="0" cellpadding="0" style="border-collapse: collapse; height: 30px; cursor: pointer;" onclick="loadcalendar('Grades_Calendar.asp?a=3');">
+										<tbody><tr>
+											<td style="color: white; font-size: 9pt; padding-left: 8px; " nowrap="">Month View  </td>
+											<td style="padding-right: 6px;"><img border="0" src="../_Images/ico_maximize/maximize-window_new.png" width="16" height="16" /></td>
+										</tr>
+									</tbody></table>
+								</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: 1px solid #999999;" align="center" background="../_Images/GradientGrey.png"><span style="font-size: 8pt"><b>Sun</b></span></td>
+					<td style="border: 1px solid #999999;" align="center" background="../_Images/GradientGrey.png" width="20%"><span style="font-size: 8pt"><b>Mon</b></span></td>
+					<td style="border: 1px solid #999999;" align="center" background="../_Images/GradientGrey.png" width="20%"><span style="font-size: 8pt"><b>Tue</b></span></td>
+					<td style="border: 1px solid #999999;" align="center" background="../_Images/GradientGrey.png" width="20%"><span style="font-size: 8pt"><b>Wed</b></span></td>
+					<td style="border: 1px solid #999999;" align="center" background="../_Images/GradientGrey.png" width="20%"><span style="font-size: 8pt"><b>Thu</b></span></td>
+					<td style="border: 1px solid #999999;" align="center" background="../_Images/GradientGrey.png" width="20%"><span style="font-size: 8pt"><b>Fri</b></span></td>
+					<td style="border: 1px solid #999999;" align="center" background="../_Images/GradientGrey.png"><span style="font-size: 8pt"><b>Sat</b></span></td>
+				</tr>
+				<tr>
+					<td valign="top" class="calendarhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_incCalendar_DayPopup.asp?date=12/30/2018');" style="border: 1px solid #999999;" align="left"><table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tbody><tr>
+		<td><font style="font-size: 8pt"><b>30</b></font></td>
+		<td align="right"><font style="font-size: 8pt"> </font></td>
+	</tr>
+</tbody></table>
+</td>
+					<td valign="top" class="calendarhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_incCalendar_DayPopup.asp?date=12/31/2018');" style="border: 1px solid #999999;" align="left" width="20%"><table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tbody><tr>
+		<td><font style="font-size: 8pt"><b>31</b></font></td>
+		<td align="right"><font style="font-size: 8pt"> </font></td>
+	</tr>
+</tbody></table>
+</td>
+					<td valign="top" class="calendarhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_incCalendar_DayPopup.asp?date=1/1/2019');" style="border: 1px solid #999999;" align="left" width="20%"><table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tbody><tr>
+		<td><font style="font-size: 8pt"><b>1</b></font></td>
+		<td align="right"><font style="font-size: 8pt"> </font></td>
+	</tr>
+</tbody></table>
+</td>
+					<td valign="top" class="calendarhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_incCalendar_DayPopup.asp?date=1/2/2019');" style="border: 1px solid #999999;" align="left" width="20%"><table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tbody><tr>
+		<td><font style="font-size: 8pt"><b>2</b></font></td>
+		<td align="right"><font style="font-size: 8pt"> </font></td>
+	</tr>
+</tbody></table>
+<table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tbody><tr>
+		<td bgcolor="#EEEEEE" style="border-bottom: 1px dotted grey;"><font style="font-size: 8pt" color="#003399"><b>AP LANGUAGE-COMP </b></font></td>
+	</tr>
+	<tr>
+		<td style="padding-left: 10px; border-bottom: 1px dotted grey;"><font style="font-size: 8pt; color: #E68A00"><span style="font-size: 8pt; width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF; margin-right: 1px;">A</span>Thesis Mini-Lesson </font></td>
+	</tr>
+</tbody></table>
+</td>
+					<td valign="top" class="calendarhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_incCalendar_DayPopup.asp?date=1/3/2019');" style="border: 1px solid #999999;" align="left" width="20%"><table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tbody><tr>
+		<td><font style="font-size: 8pt"><b>3</b></font></td>
+		<td align="right"><font style="font-size: 8pt"> </font></td>
+	</tr>
+</tbody></table>
+</td>
+					<td valign="top" class="calendarhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_incCalendar_DayPopup.asp?date=1/4/2019');" style="border: 1px solid #999999;" align="left" width="20%"><table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tbody><tr>
+		<td><font style="font-size: 8pt"><b>4</b></font></td>
+		<td align="right"><font style="font-size: 8pt"> </font></td>
+	</tr>
+</tbody></table>
+<table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tbody><tr>
+		<td bgcolor="#EEEEEE" style="border-bottom: 1px dotted grey;"><font style="font-size: 8pt" color="#003399"><b>HON SPANISH 4 </b></font></td>
+	</tr>
+	<tr>
+		<td style="padding-left: 10px; border-bottom: 1px dotted grey;"><font style="font-size: 8pt; color: #E68A00"><span style="font-size: 8pt; width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF; margin-right: 1px;">A</span>Jan-Podcast </font></td>
+	</tr>
+</tbody></table>
+</td>
+					<td valign="top" class="calendarhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_incCalendar_DayPopup.asp?date=1/5/2019');" style="border: 1px solid #999999;" align="left"><table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tbody><tr>
+		<td><font style="font-size: 8pt"><b>5  <span style="color: #004242; background-color: #66FFFF;">Today</span></b></font></td>
+		<td align="right"><font style="font-size: 8pt"> </font></td>
+	</tr>
+</tbody></table>
+</td>
+				</tr>
+			</tbody></table>
+</div></td>
+					</tr>
+				</tbody></table>
+				<table border="0" cellpadding="0" style="border-collapse: collapse" width="900">
+					<tbody><tr>
+						<td align="left"> </td>
+					</tr>
+				</tbody></table>
+
+				<table border="0" cellpadding="0" style="border-collapse: collapse;" width="900">
+					<tbody><tr>
+						<td align="left" valign="top" width="440" style="width: 440px;">
+							<div id="div_schedule" style="max-width: 440px;">
+								
+			<table id="tbl_schedule" border="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse; border-bottom: 3px solid #999999;" bordercolor="#999999" width="100%">
+				<tbody><tr>
+					<td class="blueheader" colspan="4" style="background-color: #0072C6; padding-left: 0px; padding-right: 0px;">
+						<table border="0" cellpadding="0" style="border-collapse: collapse; height: 30px;">
+							<tbody><tr>
+								<td width="30" align="center" class="hoverblue" onclick="window.location.href='Grades_POST.asp?Term=2&amp;r=1'"><img border="0" src="../_Images/ico_House_15px.gif" width="15" height="15" /></td>
+								<td width="59" align="left"> </td>
+								<td width="30" align="center"><b><font color="#FFFFFF"> </font></b></td>
+								<td width="200" align="center"><select size="1" name="cbo_Term" onchange="$('#frm_Grades').submit();" style="font-size: 12pt; font-weight: bold; border: none; color: white; background-color: #0072C6;">
+									<option value="1">1st 9 Weeks Classes</option>
+									<option value="2" selected="">2nd 9 Weeks Classes</option>
+									<option value="3">3rd 9 Weeks Classes</option>
+									<option value="4">4th 9 Weeks Classes</option>
+								</select></td>
+								<td width="30" align="center"><b><font color="#FFFFFF"> </font></b></td>
+								<td width="59" align="left"> </td>
+								<td width="30"> </td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="border: 1px solid #999999;" bgcolor="#CCCCCC" align="center" background="../_Images/GradientGrey.png"><font color="#333333"><span style="font-size: 8pt"><b>Class</b></span></font></td>
+					<td style="border: 1px solid #999999;" bgcolor="#CCCCCC" align="center" background="../_Images/GradientGrey.png" nowrap="" colspan="2"><font color="#333333"><span style="font-size: 8pt"><b>Asgn</b></span></font></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#CCCCCC" align="center" background="../_Images/GradientGrey.png" colspan="2"><font color="#333333"><span style="font-size: 8pt"><b>Points</b></span></font></td>
+
+				</tr>
+
+				<tr class="rowhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_POST.asp?a=1&amp;Class=1&amp;b=1');">
+					<td style="border: 1px solid #999999; " align="left" valign="top" width="100%"><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+							<tbody><tr>
+								<td><span style="color: #0072C6; font-size: 9pt; font-weight:700">[HS] SYMPHONIC BAND</span><br /><span style="font-size: 8pt;"><font color="#666666">(TM1-4 PD1 MTWRF ROOM IBAN) (80_0920-001)<br /><b>BABICK, ROBERT</b></font></span></td>
+								<td align="right" nowrap=""><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+										<tbody><tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+
+										<tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+									</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					<td style="border: 1px solid #999999;" align="center" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">10</font></span></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333"> <b>100% A</b></font></span></td>
+
+				</tr>
+
+				<tr class="rowhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_POST.asp?a=1&amp;Class=2&amp;b=0');">
+					<td style="border: 1px solid #999999; " align="left" valign="top" width="100%"><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+							<tbody><tr>
+								<td><span style="color: #0072C6; font-size: 9pt; font-weight:700">[HS] STUDY HALL - SHS</span><br /><span style="font-size: 8pt;"><font color="#666666">(TM1-2 PD2 MTR ROOM S315) (80_0000-118)<br /><b>FLANIGAN, KATIE</b></font></span></td>
+								<td align="right" nowrap=""><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+										<tbody><tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+
+										<tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+									</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					<td style="border: 1px solid #999999;" align="center" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">__</font></span></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">__</font></span></td>
+
+				</tr>
+
+				<tr class="rowhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_POST.asp?a=1&amp;Class=3&amp;b=0');" style="">
+					<td style="border: 1px solid #999999; " align="left" valign="top" width="100%"><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+							<tbody><tr>
+								<td><span style="color: #0072C6; font-size: 9pt; font-weight:700">[HS] AP CHEMISTRY</span><br /><span style="font-size: 8pt;"><font color="#666666">(TM1-4 PD3 MTWRF ROOM S326-S326) (80_0466-341)<br /><b>WESTON, KELLY</b></font></span></td>
+								<td align="right" nowrap=""><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+										<tbody><tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+
+										<tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+									</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					<td style="border: 1px solid #999999;" align="center" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">14</font></span></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333"> <b>95% A</b></font></span></td>
+
+				</tr>
+
+				<tr class="rowhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_POST.asp?a=1&amp;Class=4&amp;b=1');" style="background-color: rgb(254, 255, 135);">
+					<td style="border: 1px solid #999999; " align="left" valign="top" width="100%"><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+							<tbody><tr>
+								<td><span style="color: #0072C6; font-size: 9pt; font-weight:700">[HS] HON SPANISH 4</span><br /><span style="font-size: 8pt;"><font color="#666666">(TM1-4 PD4 MTWRF ROOM S119) (80_0547-351)<br /><b>ADRIAN, ANDREA</b></font></span></td>
+								<td align="right" nowrap=""><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+										<tbody><tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+
+										<tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+									</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					<td style="border: 1px solid #999999;" align="center" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">19</font></span></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333"> <b>95% A</b></font></span></td>
+
+				</tr>
+
+				<tr class="rowhover_break" style="cursor: default;">
+					<td style="border: 1px solid #999999; " align="left" valign="top" width="100%"><span style="font-size: 9pt; font-weight:700">[HS] LUNCH</span><br />
+					<span style="font-size: 8pt;"><font color="#666666">(TM1-2 PD5 MTWRF ROOM SCAF)</font></span></td>
+					<td style="border: 1px solid #999999;" align="center" nowrap="" colspan="2"></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap="" colspan="2"></td>
+
+				</tr>
+
+				<tr class="rowhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_POST.asp?a=1&amp;Class=6&amp;b=1');">
+					<td style="border: 1px solid #999999; " align="left" valign="top" width="100%"><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+							<tbody><tr>
+								<td><span style="color: #0072C6; font-size: 9pt; font-weight:700">[HS] AP CALCULUS AB</span><br /><span style="font-size: 8pt;"><font color="#666666">(TM1-4 PD6 MTWRF ROOM S310) (80_0357-361)<br /><b>MAGILL, THOMAS</b></font></span></td>
+								<td align="right" nowrap=""><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+										<tbody><tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+
+										<tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+									</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					<td style="border: 1px solid #999999;" align="center" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">5</font></span></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333"> <b>99% A</b></font></span></td>
+
+				</tr>
+
+				<tr class="rowhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_POST.asp?a=1&amp;Class=7&amp;b=1');">
+					<td style="border: 1px solid #999999; " align="left" valign="top" width="100%"><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+							<tbody><tr>
+								<td><span style="color: #0072C6; font-size: 9pt; font-weight:700">[HS] AP LANGUAGE-COMP</span><br /><span style="font-size: 8pt;"><font color="#666666">(TM1-4 PD7 MTWRF ROOM S230) (80_0146-371)<br /><b>ARMOR, AMANDA</b></font></span></td>
+								<td align="right" nowrap=""><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+										<tbody><tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+
+										<tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+									</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					<td style="border: 1px solid #999999;" align="center" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">9</font></span></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333"> <b>95% A</b></font></span></td>
+
+				</tr>
+
+				<tr class="rowhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_POST.asp?a=1&amp;Class=8&amp;b=1');">
+					<td style="border: 1px solid #999999; " align="left" valign="top" width="100%"><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+							<tbody><tr>
+								<td><span style="color: #0072C6; font-size: 9pt; font-weight:700">[HS] AP US HISTORY</span><br /><span style="font-size: 8pt;"><font color="#666666">(TM1-4 PD8 MTWRF ROOM S216) (80_0247-381)<br /><b>HANLON, JEFFREY</b></font></span></td>
+								<td align="right" nowrap=""><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+										<tbody><tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+
+										<tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+									</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					<td style="border: 1px solid #999999;" align="center" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">6</font></span></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333"> <b>95% A</b></font></span></td>
+
+				</tr>
+
+				<tr class="rowhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_POST.asp?a=1&amp;Class=9&amp;b=1');">
+					<td style="border: 1px solid #999999; " align="left" valign="top" width="100%"><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+							<tbody><tr>
+								<td><span style="color: #0072C6; font-size: 9pt; font-weight:700">[HS] CHS INTRO PROGRAM</span><br /><span style="font-size: 8pt;"><font color="#666666">(TM1-4 PD9 MTWRF ROOM S312) (80_0365-391)<br /><b>KRAULAND, DIANE</b></font></span></td>
+								<td align="right" nowrap=""><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+										<tbody><tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+
+										<tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+									</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					<td style="border: 1px solid #999999;" align="center" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">15</font></span></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333"> <b>97% A</b></font></span></td>
+
+				</tr>
+
+				<tr class="rowhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_POST.asp?a=1&amp;Class=10&amp;b=0');">
+					<td style="border: 1px solid #999999; " align="left" valign="top" width="100%"><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+							<tbody><tr>
+								<td><span style="color: #0072C6; font-size: 9pt; font-weight:700">[HS] RESOURCES</span><br /><span style="font-size: 8pt;"><font color="#666666">(TM1-4 PDCYBER MTWRF ROOM S334) (80_3040-300)<br /><b>WALKER, DEAN</b></font></span></td>
+								<td align="right" nowrap=""><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+										<tbody><tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+
+										<tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+									</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					<td style="border: 1px solid #999999;" align="center" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">__</font></span></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">__</font></span></td>
+
+				</tr>
+
+				<tr class="rowhover" onclick="$('.rowhover').css('background-color', ''); $('.calendarhover').css('background-color', ''); $(this).css('background-color', '#FEFF87'); loadclass('Grades_POST.asp?a=1&amp;Class=11&amp;b=0');">
+					<td style="border: 1px solid #999999; height: 100%;" align="left" valign="top" width="100%"><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+							<tbody><tr>
+								<td><span style="color: #0072C6; font-size: 9pt; font-weight:700">[HS] LIBRARY RESOURCE 11</span><br /><span style="font-size: 8pt;"><font color="#666666">(TM1-4 PDLIBR MTWRF RMLIBR) (80_LIBR_911)<br /><b>STEBBINS, M ICHAEL</b></font></span></td>
+								<td align="right" nowrap=""><table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+										<tbody><tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+
+										<tr>
+											<td align="right" nowrap=""><img border="0" src="../_Images/1pxTrans.gif" width="16" height="16" style="padding: 2px; margin-right: 4px;" /></td>
+										</tr>
+									</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					<td style="border: 1px solid #999999;" align="center" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">__</font></span></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap="" colspan="2"><span style="font-size: 8pt"><font color="#333333">__</font></span></td>
+
+				</tr>
+
+			</tbody></table>
+
+							</div>
+						</td>
+						<td align="left" nowrap="" valign="top" height="20" width="20" style="width: 20px;"><img border="0" src="../_Images/1pxTrans.gif" width="20" height="20" /></td>
+						<td id="td_reportcards" align="left" valign="top" width="440" style="width: 440px;">
+							<div id="div_reportcards" style="max-width: 440px; display: none;">
+								
+			<table id="tbl_reportcards" border="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse; border-bottom: 3px solid #999999;" bordercolor="#999999" width="100%">
+				<tbody><tr>
+					<td class="blueheader" align="center" bgcolor="#0072C6">
+					<font color="#FFFFFF"><b>Home Room</b></font></td>
+				</tr>
+				<tr class="rowhover_break">
+					<td style="border: 1px solid #999999;" align="center" bgcolor="#FFFFFF"><span style="font-size: 14pt; font-family: Consolas, Courier New, Times New Roman; font-weight: bold;">S329</span></td>
+				</tr>
+			</tbody></table>
+			<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table1">
+				<tbody><tr>
+					<td> </td>
+				</tr>
+			</tbody></table>
+
+			<table id="tbl_reportcards" border="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse; border-bottom: 3px solid #999999;" bordercolor="#999999" width="100%">
+				<tbody><tr>
+					<td class="blueheader" align="center" bgcolor="#0072C6"><font color="#FFFFFF"><b>Report Cards</b></font></td>
+				</tr>
+
+				<tr class="rowhover">
+					<td style="border: 1px solid #999999; padding-right: 20px; padding-bottom: 10px;" align="left" valign="top" onclick="window.open('Grades_ReportCard.asp?year=20182019');">
+						<table border="0" cellspacing="0" cellpadding="0" style="margin-left: 10px; margin-top: 10px;">
+							<tbody><tr>
+								<td style="padding-right: 5px;"><a href="javascript:%20void(0);"><img border="0" src="https://portal.svsd.net/_Images/ico_PDF_32px.png" width="32" height="32" style="margin-right: 4px;" /></a></td>
+								<td nowrap=""><a class="nounderlineonhover" href="javascript:%20void(0);"><span style="font-weight: 700; font-size: 9pt">2018-19 School Year - 1st 9 Weeks Report Card</span></a></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+
+				<tr class="rowhover">
+					<td style="border: 1px solid #999999; padding-right: 20px; padding-bottom: 10px;" align="left" valign="top" onclick="window.open('Grades_ReportCard.asp?year=20172018');">
+						<table border="0" cellspacing="0" cellpadding="0" style="margin-left: 10px; margin-top: 10px;">
+							<tbody><tr>
+								<td style="padding-right: 5px;"><a href="javascript:%20void(0);"><img border="0" src="https://portal.svsd.net/_Images/ico_PDF_32px.png" width="32" height="32" style="margin-right: 4px;" /></a></td>
+								<td nowrap=""><a class="nounderlineonhover" href="javascript:%20void(0);"><span style="font-weight: 700; font-size: 9pt">2017-18 School Year - Final Report Card</span></a></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+
+				<tr class="rowhover">
+					<td style="border: 1px solid #999999; padding-right: 20px; padding-bottom: 10px;" align="left" valign="top" onclick="window.open('Grades_ReportCard.asp?year=20162017');">
+						<table border="0" cellspacing="0" cellpadding="0" style="margin-left: 10px; margin-top: 10px;">
+							<tbody><tr>
+								<td style="padding-right: 5px;"><a href="javascript:%20void(0);"><img border="0" src="https://portal.svsd.net/_Images/ico_PDF_32px.png" width="32" height="32" style="margin-right: 4px;" /></a></td>
+								<td nowrap=""><a class="nounderlineonhover" href="javascript:%20void(0);"><span style="font-weight: 700; font-size: 9pt">2016-17 School Year - Final Report Card</span></a></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+
+				<tr class="rowhover">
+					<td style="border: 1px solid #999999; padding-right: 20px; padding-bottom: 10px;" align="left" valign="top" onclick="window.open('Grades_ReportCard.asp?year=20152016');">
+						<table border="0" cellspacing="0" cellpadding="0" style="margin-left: 10px; margin-top: 10px;">
+							<tbody><tr>
+								<td style="padding-right: 5px;"><a href="javascript:%20void(0);"><img border="0" src="https://portal.svsd.net/_Images/ico_PDF_32px.png" width="32" height="32" style="margin-right: 4px;" /></a></td>
+								<td nowrap=""><a class="nounderlineonhover" href="javascript:%20void(0);"><span style="font-weight: 700; font-size: 9pt">2015-16 School Year - Final Report Card</span></a></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+
+				<tr class="rowhover">
+					<td style="border: 1px solid #999999; padding-right: 20px; padding-bottom: 10px;" align="left" valign="top" onclick="window.open('Grades_ReportCard.asp?year=20142015');">
+						<table border="0" cellspacing="0" cellpadding="0" style="margin-left: 10px; margin-top: 10px;">
+							<tbody><tr>
+								<td style="padding-right: 5px;"><a href="javascript:%20void(0);"><img border="0" src="https://portal.svsd.net/_Images/ico_PDF_32px.png" width="32" height="32" style="margin-right: 4px;" /></a></td>
+								<td nowrap=""><a class="nounderlineonhover" href="javascript:%20void(0);"><span style="font-weight: 700; font-size: 9pt">2014-15 School Year - Final Report Card</span></a></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+
+				<tr class="rowhover">
+					<td style="border: 1px solid #999999; height: 100%; padding-right: 20px; padding-bottom: 10px;" align="left" valign="top" height="100%" onclick="window.open('Grades_ReportCard.asp?year=20132014');">
+						<table border="0" cellspacing="0" cellpadding="0" style="margin-left: 10px; margin-top: 10px;">
+							<tbody><tr>
+								<td style="padding-right: 5px;"><a href="javascript:%20void(0);"><img border="0" src="https://portal.svsd.net/_Images/ico_PDF_32px.png" width="32" height="32" style="margin-right: 4px;" /></a></td>
+								<td nowrap=""><a class="nounderlineonhover" href="javascript:%20void(0);"><span style="font-weight: 700; font-size: 9pt">2013-14 School Year - Final Report Card</span></a></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+
+			</tbody></table>
+			<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table1">
+				<tbody><tr>
+					<td> </td>
+				</tr>
+			</tbody></table>
+
+			<table id="tbl_reportcards" border="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse; border-bottom: 3px solid #999999;" bordercolor="#999999" width="100%">
+				<tbody><tr>
+					<td class="blueheader" align="center" bgcolor="#0072C6">
+					<font color="#FFFFFF"><b>Assessments</b></font></td>
+				</tr>
+
+				<tr class="rowhover">
+					<td style="border: 1px solid #999999; padding-right: 20px; padding-bottom: 10px;" align="left" valign="top" onclick="window.open('Grades_NWEA.asp');">
+						<table border="0" cellspacing="0" cellpadding="0" style="margin-left: 10px; margin-top: 10px;" id="table2">
+							<tbody><tr>
+								<td style="padding-left: 3px;"><img border="0" src="../_Images/ico_NWEA_32px_Trans.png" width="32" height="32" style="margin-right: 6px;" /></td>
+								<td nowrap=""><span style="font-weight: 700; font-size: 9pt; color: #0072C6;">NWEA Results</span></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+
+				<tr class="rowhover">
+					<td style="border: 1px solid #999999; padding-right: 20px; padding-bottom: 10px;" align="left" valign="top" onclick="window.location.href = 'Grades_Assessments.asp';">
+						<table border="0" cellspacing="0" cellpadding="0" style="margin-left: 10px; margin-top: 10px;" id="table2">
+							<tbody><tr>
+								<td style="padding-left: 3px;" height="32" width="38"><img border="0" src="../_Images/ico_Assessments_32px_Trans.png" width="32" height="32" style="margin-right: 6px;" /></td>
+								<td nowrap="">
+								<span style="font-weight: 700; font-size: 9pt; color: #0072C6;">Assessments 
+								Summary</span></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+			</tbody></table>
+
+			<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table1">
+				<tbody><tr>
+					<td> </td>
+				</tr>
+			</tbody></table>
+			<table id="tbl_reportcards" border="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse; border-bottom: 3px solid #999999;" bordercolor="#999999" width="100%">
+				<tbody><tr>
+					<td class="blueheader" align="center" bgcolor="#0072C6">
+					<font color="#FFFFFF"><b>2018-19 School Year</b></font></td>
+				</tr>
+
+				<tr class="rowhover">
+					<td style="border: 1px solid #999999; padding-right: 20px; padding-bottom: 10px;" align="left" valign="top" onclick="window.open('http://files.svsd.net/programofstudiesnew/sw/');">
+						<table border="0" cellspacing="0" cellpadding="0" style="margin-left: 10px; margin-top: 10px;" id="table2">
+							<tbody><tr>
+								<td style="padding-right: 5px;"><a target="_blank" href="javascript:%20void(0);"><img border="0" src="../_Images/ico_POS_32px.png" width="32" height="32" style="margin-right: 4px;" /></a></td>
+								<td nowrap="">
+								<span style="font-weight: 700; font-size: 9pt">
+								<a class="nounderlineonhover" target="_blank" href="javascript:%20void(0);">Program of Studies</a></span></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+
+			</tbody></table>
+
+							</div>
+							<div id="div_class">
+
+
+
+
+<title>SV Portal</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+<meta http-equiv="Page-Enter" content="blendTrans(Duration=0.001)" />
+<meta http-equiv="Page-Exit" content="blendTrans(Duration=0.001)" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="format-detection" content="telephone=no" />
+
+<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet" /> 
+<link rel="apple-touch-icon" href="https://portal.svsd.net/_images/iphone-icon.png" />
+<script type="text/javascript" src="https://portal.svsd.net/_js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="https://portal.svsd.net/_js/jquery-ui_v1-12-1_2016-09-14.js"></script>
+<script type="text/javascript" src="https://portal.svsd.net/_js/jquery_maxlength_v1-2.js"></script>
+
+<style type="text/css">
+
+/* ================================================================================================ */
+/* toolbar-button */
+/* ================================================================================================ */
+
+.toolbar-button {
+	background-color: #0971CE;
+}
+
+.toolbar-button:hover {
+	background-color: #5AB6E7;
+	cursor: pointer;
+}
+
+/* ================================================================================================ */
+/* TD SORT */
+/* ================================================================================================ */
+
+.tdsort {
+	background: url('https://portal.svsd.net/_images/gradientblue.png');
+}
+
+.tdsort:hover {
+	background: url('https://portal.svsd.net/_images/gradientcyan.png');
+	cursor: pointer;
+}
+
+/* ================================================================================================ */
+/* TD NO SORT */
+/* ================================================================================================ */
+
+.tdnosort {
+	cursor: default;
+}
+
+.tdnosort:hover {
+	cursor: default;
+}
+
+/* ================================================================================================ */
+/* ASSIGNMENT TYPE */
+/* ================================================================================================ */
+
+.assignmenttype_dropdown_td:hover {
+	background: #DEDEDE;
+}
+
+/* ================================================================================================ */
+/* CALENDER */
+/* ================================================================================================ */
+
+.calendarhover:hover {
+	background: #EEEEEE;
+	cursor: pointer;
+}
+
+/* ================================================================================================ */
+/* GENERAL HTML TAGS */
+/* ================================================================================================ */
+
+html {
+	overflow-y: scroll;
+	overflow: -moz-scrollbars-vertical;
+	filter: expression(document.execCommand("BackgroundImageCache", false, true));
+}
+
+body {
+	font-family: Arial;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	color: #333333;
+	background-color: #383841;
+}
+
+
+td {
+	font-size: 12pt;
+	border-color: #999999;
+	color: #333333;
+}
+
+a {
+	color: #0072C6;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.nounderlineonhover:hover {
+	text-decoration: none;
+}
+
+form { 
+	display: inline;
+}
+
+input, textarea {
+	-webkit-border-radius: 0;
+	font-family: Arial;
+}
+
+input[type=text]::-ms-clear { display: none; }
+
+ul {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #333333;
+	padding-left: 16px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+hr {
+	height: 1px;
+	border: none;
+	color: #CCCCCC;
+	background-color: #CCCCCC;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/*=================================================================================================*/
+
+.bluebutton {
+	background: #006AE2;
+	color: #FFFFFF;
+	font-family: Arial;
+	font-size: 10pt;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 4px;
+	text-align: center;
+	vertical-align: middle;
+	
+	/* FOR DIVS: */
+	display: inline-block;
+	display: -moz-inline-stack; /* for firefox 2 */
+	*display: inline; /* for ie 6 and 7 */
+}
+
+.bluebutton:hover {
+	background: #0074F6;
+}
+
+/*=================================================================================================*/
+
+.greenbutton {
+	background: #009933;
+	color: #FFFFFF;
+	font-family: Arial;
+	font-size: 10pt;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 4px;
+	text-align: center;
+	vertical-align: middle;
+	
+	/* FOR DIVS: */
+	display: inline-block;
+	display: -moz-inline-stack; /* for firefox 2 */
+	*display: inline; /* for ie 6 and 7 */
+}
+
+.greenbutton:hover {
+	background: #00AE38;
+}
+
+/*=================================================================================================*/
+
+.orangebutton {
+	background: #E68A00;
+	color: #FFFFFF;
+	font-family: Arial;
+	font-size: 10pt;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 4px;
+	text-align: center;
+	vertical-align: middle;
+	
+	/* FOR DIVS: */
+	display: inline-block;
+	display: -moz-inline-stack; /* for firefox 2 */
+	*display: inline; /* for ie 6 and 7 */
+}
+
+.orangebutton:hover {
+	background: #FA9900;
+}
+
+/* ================================================================================================ */
+/* TITLE FONT */
+/* ================================================================================================ */
+
+@font-face {
+   font-family: titlefont;
+   src: url('https://portal.svsd.net/_fonts/titlefont.woff');
+}
+
+.titletext {
+	font-size: 24pt;
+	font-family: titlefont;
+	color: #32566C;
+}
+
+/* ================================================================================================ */
+/* GREYBANNER
+/* ================================================================================================ */
+
+.greybanner {
+	height: 60px;
+	font-size: 18pt;
+	font-weight: bold;
+	border-top: 1px solid #CCCCCC;
+	background: url('https://portal.svsd.net/_Images/GridGradientBigger.png');
+}
+
+/* ================================================================================================ */
+/* DIV LINK */
+/* ================================================================================================ */
+
+.divlinkpointer:hover {
+	cursor: pointer;
+}
+
+/* ================================================================================================ */
+/* VALIDATION */
+/* ================================================================================================ */
+
+label.error {
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	margin-left: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+/* ========================================================= */
+/* DOTTED BOTTOM */
+/* ========================================================= */
+
+.dottedbottom {
+	border-bottom-style: dotted;
+	border-bottom-color: #888888;
+	border-bottom-width: 1px;
+}
+
+/* ========================================================= */
+/* INFOTEXT */
+/* ========================================================= */
+
+span.infotext {
+	
+}
+
+/* DEFINE THE HIDDEN SPAN */
+
+span.infotext span {
+	color: #5A5A5A;
+    display: none;
+	position: absolute;
+    z-index: 99998;
+    padding: 4px;
+    margin-top: 18px;
+    margin-left: 0px;
+    text-align: left;
+    font-size: 9pt;
+    font-style: italic;
+    font-weight: normal;
+	background-color: #FFFFCE;
+	border: 1px solid #DADBAB;
+}
+
+/* PROPERTIES THAT GET MODIFIED DURING HOVER */
+
+span:hover.infotext span {
+	display: inline;
+}
+
+/* ========================================================= */
+/* INFOTEXT2 */
+/* ========================================================= */
+
+span.infotext2 {
+	color: #333333;
+	text-decoration: none;
+}
+
+/* DEFINE THE HIDDEN SPAN */
+
+span.infotext2 span {
+	color: #5A5A5A;
+    display: none;
+	position: absolute;
+    z-index: 99998;
+    padding: 4px;
+    margin-top: 0px;
+    margin-left: 60px;
+    text-align: left;
+    font-size: 9pt;
+    font-style: italic;
+    font-weight: normal;
+	background-color: #FFFFCE;
+	border: 1px solid #DADBAB;
+}
+
+/* PROPERTIES THAT GET MODIFIED DURING HOVER */
+
+span:hover.infotext2 span {
+	display: inline;
+}
+
+/* ========================================================= */
+/* INFOTIP */
+/* ========================================================= */
+
+a.infotip {
+}
+
+/* DEFINE THE HIDDEN SPAN */
+
+a.infotip span {
+    display: none;
+    z-index: 99998;
+    padding: 4px;
+    margin-top: 18px;
+    margin-left: 0px;
+    text-align: left;
+    font-size: 9pt;
+    font-style: italic;
+	color: #333333;
+	background-color: #FFFFCE;
+	border: 1px solid #DADBAB;
+}
+
+/* PROPERTIES THAT GET MODIFIED DURING HOVER */
+
+a:hover.infotip span {
+	display: inline;
+	position: absolute;
+}
+
+/* ================================================================================================ */
+/* POPUP WINDOWS */
+/* ================================================================================================ */
+
+#popup_background_feedback_zindex2 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background-color: black;
+}
+
+#popup_foreground_feedback_zindex3 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex2b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background-color: black;
+}
+
+#popup_foreground_zindex3b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex4b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 4;
+	background-color: black;
+}
+
+#popup_foreground_zindex5b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex6b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 6;
+	background-color: black;
+}
+
+#popup_foreground_zindex7b {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 7;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex2 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background-color: black;
+}
+
+#popup_foreground_zindex3 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex4 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 4;
+	background-color: black;
+}
+
+#popup_foreground_zindex5 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_background_zindex6 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 6;
+	background-color: black;
+}
+
+#popup_foreground_zindex7 {
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 7;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+/* ================================================================================================ */
+
+#popup_foreground_window_welcome {
+	width: 960px;
+	height: 165px;
+	top: 8px;
+	background-color: #0072C6;
+	border-color: #333333;
+	border-style: solid;
+	border-width: 1px;
+	-moz-box-shadow: 0px 0px 30px 0px #000000;
+	-webkit-box-shadow: 0px 0px 30px 0px #000000;
+	box-shadow: 0px 0px 30px 0px #000000;
+}
+
+/* ================================================================================================ */
+
+#popup_foreground_window_white {
+	background-color: #FFFFFF;
+	border-color: #0191FF;
+	border-style: solid;
+	border-width: 1px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-bottom: 6px;
+	-moz-box-shadow: 0px 0px 30px 0px #000000;
+	-webkit-box-shadow: 0px 0px 30px 0px #000000;
+	box-shadow: 0px 0px 30px 0px #000000;
+}
+
+#popup_foreground_window_white_layer2 {
+	background-color: #FFFFFF;
+	border-color: #0191FF;
+	border-style: solid;
+	border-width: 1px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-bottom: 6px;
+	-moz-box-shadow: 0px 0px 30px 0px #000000;
+	-webkit-box-shadow: 0px 0px 30px 0px #000000;
+	box-shadow: 0px 0px 30px 0px #000000;
+}
+
+#popup_foreground_window_white_layer3 {
+	background-color: #FFFFFF;
+	border-color: #0191FF;
+	border-style: solid;
+	border-width: 1px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-bottom: 6px;
+	-moz-box-shadow: 0px 0px 30px 0px #000000;
+	-webkit-box-shadow: 0px 0px 30px 0px #000000;
+	box-shadow: 0px 0px 30px 0px #000000;
+}
+
+a.popup_closex_white {
+	display: block;
+	width: 30px;
+	height: 30px;
+	text-decoration: none;
+	margin-right: 1px;
+	background-color: #FFFFFF;
+	background-image: url("https://portal.svsd.net/_Images/CloseX_Lync60x30px_White.png");
+}
+
+a.popup_closex_white:hover {
+	background-position: -30px 0;
+}
+
+/* ================================================================================================ */
+/* FOR WELCOME BAR */
+/* ================================================================================================ */
+
+a.popup_closex_blue {
+	display: block;
+	width: 30px;
+	height: 30px;
+	text-decoration: none;
+	margin-right: 1px;
+	background-color: #FFFFFF;
+	background-image: url("https://portal.svsd.net/_Images/CloseX_Lync60x30px_Blue.png");
+}
+
+a.popup_closex_blue:hover {
+	background-position: -30px 0;
+}
+
+/* ================================================================================================ */
+/* FOR EXPLODE EFFECT */
+/* ================================================================================================ */
+
+[class^=ui-effects] {
+    z-index: 10;
+}
+
+/* ========================================================= */
+/* HOVER ONLY */
+/* ========================================================= */
+
+.hoveronlylink, .hoveronlylink:visited, .hoveronlylink:active {
+  color: #333333;
+  text-decoration: none;
+  border-bottom: 1px #0072C6 dotted;
+}
+
+.hoveronlylink:hover {
+  border-bottom: 1px #333333 dotted;
+}
+
+/* ========================================================= */
+/* WHITELINK CLASS */
+/* ========================================================= */
+
+.whitelink {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.whitelink:hover {
+	text-decoration: underline;
+}
+
+/* ========================================================= */
+/* WHITELINK8 CLASS */
+/* ========================================================= */
+
+.whitelink8 {
+	color: #FFFFFF;
+	text-decoration: none;
+	font-size: 10pt;
+}
+
+.whitelink8:hover {
+	text-decoration: underline;
+}
+
+/* ========================================================= */
+/* GREYLINK8 CLASS */
+/* ========================================================= */
+
+.greylink8 {
+	color: #333333;
+	text-decoration: none;
+	font-size: 10pt;
+}
+
+.greylink8:hover {
+	text-decoration: underline;
+}
+
+/* ========================================================= */
+/* BLUE HEADER CLASS */
+/* ========================================================= */
+
+.blueheader {
+	height: 30px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	background-color: #0072C6;
+	border-left: 1px solid #0072C6;
+	border-right: 1px solid #0072C6;
+	border-top: 3px solid #00599E;
+	border-bottom: 1px solid #00599E;
+	background: url('https://portal.svsd.net/_Images/BlueHeaderGradient.png');
+}
+
+/* ========================================================= */
+/* TOOLTIP FOR CLASSES AND TERMS */
+/* ========================================================= */
+
+a.tooltip {
+	z-index: 99997;
+	position: relative; /* relative positioning is bad in ie, makes dropdown disappear? */
+	padding-bottom: 4px;
+}
+
+a:hover.tooltip {
+	text-decoration: none;
+	background-color: transparent; /* this is for whatever reason important for ie6 dropdown or else it doesn't work at all*/
+}
+
+a.tooltip span {
+    z-index: 99998;
+    display: none;
+}
+
+a:hover.tooltip span {
+    display: inline;
+    position: absolute;
+    left: 0px;
+    top: 16px; /* 18px; needs to be close enough to not disappear on older browsers IE6/IE7 */
+}
+
+/* ================================================================================================ */
+/* BLUEHOVER CLASS */
+/* ================================================================================================ */
+
+.bluehover {
+	font-size: 10pt;
+	z-index: 99998;
+	display: block;
+	padding: 6px;
+	color: white;
+	text-decoration: none;
+	background-color: #0072C6;
+	border-left: 2px solid #FFFFFF;
+	border-right: 2px solid #FFFFFF;
+	border-bottom: 2px solid #FFFFFF;
+}
+
+.bluehover:hover {
+	background-color: #1E82CC;
+	text-decoration: none;
+}
+
+.bluehover:active {
+	background-color: #1E99CC;
+}
+
+/* ========================================================= */
+/* TOOLTIPSTUDENT */
+/* ========================================================= */
+
+a.tooltipstudent {
+	z-index: 99997;
+	position: relative; /* relative positioning is bad in ie, makes dropdown disappear? */
+	padding-bottom: 4px;
+}
+
+a:hover.tooltipstudent {
+	text-decoration: none;
+	background-color: transparent; /* this is for whatever reason important for ie6 dropdown or else it doesn't work at all*/
+}
+
+a.tooltipstudent span {
+    z-index: 99998;
+    display: none;
+}
+
+a:hover.tooltipstudent span {
+    display: inline;
+    position: absolute;
+    left: 0px;
+    top: 38px; /* needs to be close enough to not disappear on older browsers IE6/IE7 */
+}
+
+/* ========================================================= */
+/* TABLE TOOLTIPSTUDENT */
+/* ========================================================= */
+
+table.tabletooltipstudent {
+	z-index: 99997;
+	position: relative; /* relative positioning is bad in ie, makes dropdown disappear? */
+	padding-bottom: 4px;
+	cursor: pointer;
+}
+
+table:hover.tabletooltipstudent {
+	text-decoration: none;
+	background-color: transparent; /* this is for whatever reason important for ie6 dropdown or else it doesn't work at all*/
+}
+
+table.tabletooltipstudent span {
+    z-index: 99998;
+    display: none;
+}
+
+table:hover.tabletooltipstudent span {
+    display: inline;
+    position: absolute;
+    left: 0px;
+    top: 38px; /* needs to be close enough to not disappear on older browsers IE6/IE7 */
+}
+
+/* ================================================================================================ */
+/* STUDENTHOVER CLASS */
+/* ================================================================================================ */
+
+.studenthover {
+	font-size: 10pt;
+	z-index: 99998;
+	display: block;
+	padding: 6px;
+	color: white;
+	text-decoration: none;
+	background-color: #0072C6;
+	border-left: 2px solid #FFFFFF;
+	border-right: 2px solid #FFFFFF;
+	border-bottom: 2px solid #FFFFFF;
+}
+
+.studenthover:hover {
+	background-color: #1E82CC;
+	text-decoration: none;
+}
+
+.studenthover:active {
+	background-color: #1E99CC;
+}
+
+/* ================================================================================================ */
+/* WELCOME CLASS */
+/* ================================================================================================ */
+
+a.rollover_welcome {
+	font-family: Arial;
+	font-size: 10pt;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border-right-style: solid;
+	border-right-color: #518BAF;
+	border-right-width: 1px;
+	background: url('https://portal.svsd.net/_Images/Welcome.gif');
+}
+
+a.rollover_welcome:hover {
+	background-position: -22px 0;
+}
+
+/* ================================================================================================ */
+/* TAB0 CLASS */
+/* ================================================================================================ */
+
+.tab0 {
+	font-family: Arial;
+	font-size: 9pt;
+	color: #FFFFFF;
+	display: inline-block;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	border-right-style: solid;
+	/*border-right-color: #61AEE3;*/
+	/*border-right-color: #075399;*/
+	border-right-color: #527FA8;
+	border-right-width: 1px;
+	text-decoration: none;
+}
+
+.tab0:hover {
+	text-decoration: underline;
+}
+
+/* ================================================================================================ */
+/* TAB1 CLASS */
+/* ================================================================================================ */
+
+.tab1 {
+	font-family: Arial;
+	font-size: 10pt;
+	/*color: #31556B;*/
+	color: #FFFFFF;
+	display: inline-block;
+	text-decoration: none;
+	
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.tab1:hover {
+	text-decoration: none;
+	background: url("https://portal.svsd.net/_Images/OpacityWhite1px_20.png");
+}
+
+/* ================================================================================================ */
+/* TAB2 CLASS */
+/* ================================================================================================ */
+
+.tab2 {
+	font-size: 11pt;
+	/*color: #31556B;*/
+	color: #FFFFFF;
+	display: inline-block;
+	font-weight: bold;
+	
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.tab2:hover {
+	text-decoration: none;
+}
+
+/* ================================================================================================ */
+/* STUDENTDROPDOWN */
+/* ================================================================================================ */
+
+.studentdropdown {
+	padding-left: 18px;
+	padding-right: 28px;
+	padding-top: 2px;
+	padding-bottom: 5px;
+	background: #FFFFFF;
+}
+
+.studentdropdown:hover {
+	background: #EEEEEE;
+	cursor: pointer;
+}
+
+/* ================================================================================================ */
+/* TAB_FEEDBACK CLASS */
+/* ================================================================================================ */
+
+.tab_feedback {
+	font-family: Arial;
+	font-size: 12px;
+	color: white;
+	display: inline-block;
+	line-height: 18px;
+
+	padding-left: 10px;
+	padding-right: 10px;
+
+	padding-top: 8px;
+	padding-bottom: 8px;
+	
+/*
+	border-left-style: solid;
+	border-left-color: #484848;
+	border-left-width: 1px;
+*/
+	text-decoration: none;
+	background-image: url('https://portal.svsd.net/_Images/Toolbar.png');
+	background-position: 0px 0px;
+}
+
+.tab_feedback:hover {
+	background-position: 0px -35px;
+	text-decoration: none;
+}
+
+/*
+.tab_feedback:active {
+	background-position: 0px -70px;
+	text-decoration: none;
+}
+*/
+
+/* ================================================================================================ */
+/* TEXTBOX1 CLASS */
+/* ================================================================================================ */
+
+.textbox1 {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	-webkit-appearance: none;
+	padding: 3px;
+}
+
+.textbox1:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* TEXTBOX1_NOHEIGHTPADDING CLASS */
+/* ================================================================================================ */
+
+.textbox1_noheightpadding {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	-webkit-appearance: none;
+}
+
+.textbox1_noheightpadding_nohover {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	-webkit-appearance: none;
+}
+
+.textbox1_noheightpadding:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* TEXTAREA1 CLASS */
+/* ================================================================================================ */
+
+.textarea1 {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	padding: 3px;
+	-webkit-appearance: none;
+}
+
+.textarea1:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* TEXTAREA1_LP CLASS */
+/* ================================================================================================ */
+
+.textarea1_lp {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 0px solid #CCCCCC;
+	padding: 0px;
+	-webkit-appearance: none;
+	background: whitesmoke;
+}
+
+.textarea1_lp:hover {
+	/*border: 1px solid #D26B2D;*/
+}
+
+/* ================================================================================================ */
+/* TEXTAREA1_NOHEIGHTPADDING CLASS */
+/* ================================================================================================ */
+
+.textarea1_noheightpadding {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	-webkit-appearance: none;
+}
+
+.textarea1_noheightpadding_nohover {
+	font-family: Arial;
+	font-size: 12pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	-webkit-appearance: none;
+}
+
+.textarea1_noheightpadding:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* DROPDOWN1 CLASS */
+/* ================================================================================================ */
+
+.dropdown1 {
+	font-family: Arial;
+	font-size: 10pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+	padding: 3px;
+}
+
+.dropdown1:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* DROPDOWN1_NOHEIGHTPADDING CLASS */
+/* ================================================================================================ */
+
+.dropdown1_noheightpadding {
+	font-family: Arial;
+	font-size: 10pt;
+	color: #D26B2D;
+	border: 1px solid #CCCCCC;
+}
+
+.dropdown1_noheightpadding:hover {
+	border: 1px solid #D26B2D;
+}
+
+/* ================================================================================================ */
+/* BUTTON1 CLASS */
+/* ================================================================================================ */
+
+.button1 {
+	background-color: #0072C6;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: normal;
+	padding: 6px 0px;
+    width: 172px;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+}
+
+.button1:hover {
+	background-color: #1E82CC;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.button1:active {
+	background-color: #1E99CC;
+}
+
+/* ================================================================================================ */
+/* BUTTON1_ORANGE CLASS */
+/* ================================================================================================ */
+
+.button1_orange {
+	background-color: #DE8C19;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: normal;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 0px;
+	padding-right: 0px;
+    width: 172px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button1_orange:hover {
+	background-color: #E9A037;
+	text-decoration: none;
+}
+
+.button1_orange:active {
+	background-color: #DE8C19;
+}
+
+/* ================================================================================================ */
+/* BUTTON1_RED CLASS */
+/* ================================================================================================ */
+
+.button1_red {
+	background-color: #DC0000;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: normal;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 0px;
+	padding-right: 0px;
+    width: 172px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button1_red:hover {
+	background-color: #FF0000;
+	text-decoration: none;
+}
+
+.button1_red:active {
+	background-color: #DC0000;
+}
+
+/* ================================================================================================ */
+/* BUTTON2 CLASS */
+/* ================================================================================================ */
+
+.button2 {
+	background-color: #0072C6;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-weight: normal;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button2:hover {
+	background-color: #1E82CC;
+	text-decoration: none;
+}
+
+.button2:active {
+	background-color: #0072C6;
+}
+
+/* ================================================================================================ */
+/* BUTTON3 CLASS */
+/* ================================================================================================ */
+
+.button3 {
+	background-color: #0072C6;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-weight: normal;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	padding-right: 0px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button3:hover {
+	background-color: #1E82CC;
+	text-decoration: none;
+}
+
+.button3:active {
+	background-color: #0072C6;
+}
+
+/* ================================================================================================ */
+/* BUTTON3_CYAN CLASS */
+/* ================================================================================================ */
+
+.button3_cyan {
+	/*background-color: #FFFF80;*/
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-weight: normal;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button3_cyan:hover {
+	background-color: #2A8AD4;
+	text-decoration: none;
+}
+
+.button3_cyan:active {
+	background-color: #2A8AD4;
+}
+
+/* ================================================================================================ */
+/* BUTTON3_CYAN_NOINLINEBLOCK CLASS */
+/* ================================================================================================ */
+
+.button3_cyan_noinlineblock {
+	/*background-color: #FFFF80;*/
+	border-style: none;
+	/*display: inline-block;*/
+	color: #ffffff;
+	font-family: Arial;
+	font-weight: normal;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button3_cyan_noinlineblock:hover {
+	background-color: #2A8AD4;
+	text-decoration: none;
+}
+
+.button3_cyan_noinlineblock:active {
+	background-color: #2A8AD4;
+}
+
+/* ================================================================================================ */
+/* BUTTON4 CLASS */
+/* ================================================================================================ */
+
+.button4 {
+	background-color: #DE8C19;
+	border-style: none;
+	display: inline-block;
+	color: #ffffff;
+	font-family: Arial;
+	font-weight: normal;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	padding-right: 0px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button4:hover {
+	background-color: #E9A037;
+	text-decoration: none;
+}
+
+.button4:active {
+	background-color: #DE8C19;
+}
+
+/* ================================================================================================ */
+/* HIGHLIGHTCELL_WHITE CLASS */
+/* ================================================================================================ */
+
+.highlightcell_white {
+	background-color: #FFFFFF;
+}
+
+.highlightcell_white:hover {
+	background-color: yellow;
+}
+
+/* ================================================================================================ */
+/* HIGHLIGHTCELL_YELLOW CLASS */
+/* ================================================================================================ */
+
+.highlightcell_yellow {
+	background-color: #FFFFEA;
+}
+
+.highlightcell_yellow:hover {
+	background-color: yellow;
+}
+
+/* ================================================================================================ */
+/* HIGHLIGHTCELL_CYAN CLASS */
+/* ================================================================================================ */
+
+.highlightcell_cyan {
+	background-color: #CCFFFF;
+}
+
+.highlightcell_cyan:hover {
+	background-color: #9FFFFE;
+}
+
+/* ================================================================================================ */
+
+@media print {
+	.noprint {
+		display: none;
+	}
+	.pagebody {
+		background: #FFFFFF;
+	}
+	.pagewidth {
+		width: 900px;
+	}
+	.pagewidth2 {
+		width: 900px;
+	}
+	.pageshadow {
+	}
+	.pagepadding {
+		padding-left: 0px;
+		padding-right: 0px;
+
+	}
+	.misc1 {
+		height: 17px;
+	}
+}
+
+@media screen {
+	.noscreen {
+		display: none;
+	}
+	.pagebody {
+		/*background: #333333;*/
+	}
+	.pagewidth {
+
+		width: 960px;
+		margin-left: -480px;
+		left: 50%;
+
+	}
+	.pagewidth2 {
+
+		width: 960px;
+
+	}
+	.pageshadow {
+
+		/*
+		-moz-box-shadow: 0px 0px 30px 0px #191919;
+		-webkit-box-shadow: 0px 0px 30px 0px #191919;
+		box-shadow: 0px 0px 30px 0px #191919;
+		*/
+
+	}
+	.pagepadding {
+
+		padding-left: 30px;
+		padding-right: 30px;
+
+	}
+	.misc1 {
+		height: 25px;
+	}
+}
+
+@page {
+	margin: 0.5in;
+}
+
+</style>
+
+<script type="text/javascript">
+
+	mytab = '#taba';
+	
+	mycontentwrappertable = '#content_wrapper_table';
+	myloadingtable = '#loading_table';
+	
+   	popup_background_zindex2 = '#popup_background_zindex2';
+   	popup_foreground_zindex3 = '#popup_foreground_zindex3';
+   	popup_foreground_zindex3_inject = '#popup_foreground_zindex3_inject';
+   	
+   	popup_background_zindex2b = '#popup_background_zindex2b';
+   	popup_foreground_zindex3b = '#popup_foreground_zindex3b';
+   	popup_foreground_zindex3b_inject = '#popup_foreground_zindex3b_inject';
+   	
+   	popup_background_zindex4 = '#popup_background_zindex4';
+   	popup_foreground_zindex5 = '#popup_foreground_zindex5';
+   	popup_foreground_zindex5_inject = '#popup_foreground_zindex5_inject';
+   	
+   	popup_background_zindex4b = '#popup_background_zindex4b';
+   	popup_foreground_zindex5b = '#popup_foreground_zindex5b';
+   	popup_foreground_zindex5b_inject = '#popup_foreground_zindex5b_inject';
+   	
+   	popup_background_zindex6 = '#popup_background_zindex6';
+   	popup_foreground_zindex7 = '#popup_foreground_zindex7';
+   	popup_foreground_zindex7_inject = '#popup_foreground_zindex7_inject';
+   	
+	popup_foreground_window_white = '#popup_foreground_window_white';
+	popup_foreground_window_white_layer2 = '#popup_foreground_window_white_layer2';
+	popup_foreground_window_white_layer3 = '#popup_foreground_window_white_layer3';
+	
+	frm_Main = '#frm_Main';
+   	
+	showDots = 0;
+
+	var showLoadingDots = function()
+	{
+		var showDots = setInterval(
+			function()
+			{
+
+				if ($("#loadingDots").length&gt;0)
+				{
+
+					var dots = '........................................................................',i=1;
+
+					if ($("#loadingDots").html().length==0 || ($("#loadingDots").html().length == dots.length))
+					{
+						$("#loadingDots").html('');
+						var i = 1;
+					}
+					else
+					{
+						i++;
+					}
+					$("#loadingDots").html($("#loadingDots").html()+".");
+				}
+				else
+				{
+
+					clearInterval(showDots);
+				}
+			}
+			,50
+		);
+
+	}
+
+	var showLoadingDots2 = function()
+	{
+		var showDots = setInterval(
+			function()
+			{
+
+				if ($("#loadingDots2").length&gt;0)
+				{
+
+					var dots = '........................................................................',i=1;
+
+					if ($("#loadingDots2").html().length==0 || ($("#loadingDots2").html().length == dots.length))
+					{
+						$("#loadingDots2").html('');
+						var i = 1;
+					}
+					else
+					{
+						i++;
+					}
+					$("#loadingDots2").html($("#loadingDots2").html()+".");
+				}
+				else
+				{
+
+					clearInterval(showDots);
+				}
+			}
+			,50
+		);
+
+	}
+
+
+</script>
+			<table border="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse; border-bottom: 3px solid #999999;" bordercolor="#999999" width="100%">
+				<tbody><tr>
+					<td class="blueheader" style="padding: 0px;" align="center" colspan="4" bgcolor="#0072C6">
+					<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" height="100%">
+						<tbody><tr>
+							<td class="button3_cyan_noinlineblock noprint" nowrap="" width="60" height="30" align="center" style="font-size: 9pt; text-decoration: none; color: #FFFFFF; cursor: pointer;" onclick="$('.rowhover').css('background-color', ''); $('#div_class').hide(); $('#div_reportcards').show();">◄ Back  </td>
+							<td align="center"><font color="#FFFFFF"><b>[HS] HON SPANISH 4</b></font></td>
+							<td nowrap="" width="60" align="center"> </td>
+						</tr>
+					</tbody></table>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="border: 1px solid #999999;" bgcolor="#CCCCCC" align="center" background="../_Images/GradientGrey.png"><font color="#333333"><span style="font-size: 8pt"><b>Assignment</b></span></font></td>
+					<td style="border: 1px solid #999999;" bgcolor="#CCCCCC" align="center" background="../_Images/GradientGrey.png"><font color="#333333"><span style="font-size: 8pt"><b>Due</b></span></font></td>
+
+					<td style="border: 1px solid #999999;" bgcolor="#CCCCCC" align="center" background="../_Images/GradientGrey.png"><font color="#333333"><span style="font-size: 8pt"><b>Comments</b></span></font></td>
+					<td style="border: 1px solid #999999;" bgcolor="#CCCCCC" align="center" background="../_Images/GradientGrey.png"><font color="#333333"><span style="font-size: 8pt"><b>Points</b></span></font></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Nov- Comp de Leer</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Nov 2</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">10 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Nov- Mostrar y Decir</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Nov 7</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">10 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Nov- Peri�dico</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Nov 9</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">10 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Nov- Podcast</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Nov 14</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">10 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Nov- Prac de Verbos</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Nov 16</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">9 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">San Martin and Pres Subj Test</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Nov 16</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">83 / 84</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Subjunctive HW Packet</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Nov 16</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">20 / 20</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Nov- AP Gram Vocab 9-12</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Nov 28</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">6 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Dec- Mostrar y Decir</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Dec 5</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">9 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Dec- Comp de Leer - Span Civil War</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Dec 7</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">10 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Examen- CR</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Dec 11</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">77 / 80</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Dec- Peri�dico</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Dec 12</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">10 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Dec- Pr�ctica de Verbos</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Dec 14</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">10 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Dec- AP Gram y Vocab</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Dec 19</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">7 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Test- Por- Para</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Dec 20</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">70 / 75</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Dec- Podcast</font></span><br /><span style="font-size: 8pt;"><font color="#666666">25-12-08 Navidad or NY Eve 1-1-08</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Dec 21</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">10 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Jan-Podcast</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Jan 4</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">10 / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Jan- Peri�dico</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Jan 9</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">__ / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="font-size: 8pt; border: 1px solid #999999;" align="left" valign="top"><span style="width: 20px; display: inline-block; text-align: center; background-color: #E68A00; color: #FFFFFF;">A</span> <span style="font-size: 9pt; font-weight:700"><font style="color: #E68A00; background-color: white;">Jan-Pr�ctica de Verbos</font></span><br />
+
+<script>
+	$('#assignmentfiles_tr').hide();
+	$('#assignmentfiles_td').css('border-top', '1px #CCCCCC none');
+	$('#assignmentfiles_td').css('border-bottom', '1px #CCCCCC none');
+</script>
+
+					</td>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">Jan 11</font></span></td>
+
+					<td style="border: 1px solid #999999;" align="left" valign="top"><font color="#666666"><span style="font-style: italic; font-size: 8pt"></span></font></td>
+					<td style="border: 1px solid #999999;" align="right" valign="top" nowrap=""><span style="font-size: 8pt"><font color="#333333">__ / 10</font></span></td>
+
+				</tr>
+
+				<tr>
+					<td style="border: 1px solid #999999;" colspan="3" align="right" bgcolor="#666666" width="100%" height="24"><font color="#FFFFFF"><span style="font-size: 8pt"><b>OVERALL</b></span></font></td>
+					<td style="border: 1px solid #999999;" bgcolor="#FFFFCC" align="right" nowrap=""><span style="font-size: 8pt"><font color="#333333">371 / 389<br /><b>95% A</b></font></span></td>
+				</tr>
+
+			</tbody></table>
+			<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+				<tbody><tr>
+					<td align="right"><span style="font-size: 2pt">  </span></td>
+				</tr>
+				<tr>
+					<td> </td>
+				</tr>
+			</tbody></table>
+
+			<table border="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse; border-bottom: 3px solid #999999;" bordercolor="#999999" width="100%">
+				<tbody><tr>
+					<td class="orangeheader" align="center" bgcolor="#F5872B"><font color="#FFFFFF"><b>Moodle</b></font></td>
+				</tr>
+				<tr>
+					<td class="rowhover" style="border: 1px solid #999999; padding: 8px;" align="left" onclick="window.open('Grades_Moodle.asp?a=80_0547_adrianac');">
+						<table border="0" cellpadding="0" style="border-collapse: collapse">
+							<tbody><tr>
+								<td align="left" valign="top"><img border="0" src="../_Images/ico_Moodle_57x39px_Trans.png" width="57" height="39" align="left" style="padding-right: 8px;" /></td>
+								<td align="left">
+									<font size="3"><span style="font-weight: 700; color: #0072D9;">[HS] HON SPANISH 4</span></font></td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+			</tbody></table>
+
+			<table border="0" width="100%" cellpadding="0" style="border-collapse: collapse">
+				<tbody><tr>
+					<td align="right"><span style="font-size: 2pt">  </span></td>
+				</tr>
+				<tr>
+					<td> </td>
+				</tr>
+			</tbody></table>
+
+			<table border="1" cellspacing="0" cellpadding="2" style="border-collapse: collapse; border-bottom: 3px solid #999999;" bordercolor="#999999" width="100%">
+				<tbody><tr>
+					<td class="blueheader" align="center" bgcolor="#0072C6"><font color="#FFFFFF"><b>Class Information</b></font></td>
+				</tr>
+				<tr>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 9pt">Teacher:  <b>ADRIAN, ANDREA</b></span></td>		
+				</tr>
+				<tr>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 9pt">Email:  <a href="mailto:adrianac@svsd.net">adrianac@svsd.net</a></span></td>		
+				</tr>
+				<tr>
+					<td style="border: 1px solid #999999;" align="left" valign="top" nowrap=""><span style="font-size: 9pt">Web:  <a target="_blank" href="http://www.svsd.net/adrianac">www.svsd.net/adrianac</a></span></td>		
+				</tr>
+			</tbody></table>
+</div>
+						</td>
+					</tr>
+				</tbody></table>
+				<table border="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+					<tbody><tr>
+						<td align="left">
+							<span style="font-size: 8pt">  </span>
+						</td>
+					</tr>
+				</tbody></table>
+
+<script type="text/javascript" src="https://portal.svsd.net/_js/jquery_qtip_v2-1-1_none_min.js"></script>
+<script>
+
+	$('.qtipbottommiddle').qtip(
+		{
+			show: {delay: 0, effect: false},
+			hide: {delay: 0, effect: false},
+			position: {
+				my: 'top middle',  // Position my top left...
+				at: 'bottom middle'
+			}
+		}
+	);
+
+	$('.qtiprightmiddle').qtip(
+		{
+			show: {delay: 0, effect: false},
+			hide: {delay: 0, effect: false},
+			position: {
+				my: 'left middle',  // Position my top left...
+				at: 'right middle'
+			}
+		}
+	);
+	
+	$('.qtiptopmiddle').qtip(
+		{
+			show: {delay: 0, effect: false},
+			hide: {delay: 0, effect: false},
+			position: {
+				my: 'bottom middle',  // Position my top left...
+				at: 'top middle'
+			}
+		}
+	);
+	
+	$('.qtipbottomright').qtip(
+		{
+			show: {delay: 0, effect: false},
+			hide: {delay: 0, effect: false},
+			position: {
+				my: 'top right',  // Position my top left...
+				at: 'bottom right'
+			}
+		}
+	);
+	
+	$('.qtipbottomleft').qtip(
+		{
+			show: {delay: 0, effect: false},
+			hide: {delay: 0, effect: false},
+			position: {
+				my: 'top left',  // Position my top left...
+				at: 'bottom left'
+			}
+		}
+	);
+
+	//$('#tbl_schedule').height($('#div_reportcards').height());
+
+	function popup23(arg){
+		$(function () {
+			$.get(arg, function (data) {
+				$("#popup_foreground_zindex3b_inject").html(data);
+				$("#popup_background_zindex2b").fadeTo(0, 0.5);
+				$("#popup_foreground_zindex3b").show();
+				$("#popup_foreground_window_white").draggable(); 
+				//$('html').css('overflow-y','hidden');
+			});
+		});
+	};
+
+	function popup45(arg){
+		$(function () {
+			$.get(arg, function (data) {
+				$("#popup_foreground_zindex5b_inject").html(data);
+				$("#popup_background_zindex4b").fadeTo(0, 0.5);
+				$("#popup_foreground_zindex5b").show();
+				$("#popup_foreground_window_white_layer2").draggable(); 
+				//$('html').css('overflow-y','hidden');
+			});
+		});
+	};
+
+	function loadclass(arg){
+		$(function () {
+			$.get(arg, function (data) {
+				$('#div_reportcards').hide();
+				$('#div_class').show(); 
+				$("#div_class").html(data);
+			});
+		});
+	};
+
+	function loadcalendar(arg){
+		$(function () {
+			$.get(arg, function (data) {
+				$("#div_calendar").html(data);
+			});
+		});
+	};
+
+</script>
+			</form>
+</div><!-- pagecontent -->
+
+			<!-- CONTENT WRAPPER TABLE FOOTER START -->
+							<div id="loading_table" style="width: 100%; height: 100%; position: absolute; display: none; z-index: 999999; left: 0px; right: 0px; bottom: 0px; top: 0px; background: white; text-align: left;">
+								<span id="loadingDots"></span>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+			<!-- CONTENT WRAPPER TABLE FOOTER START -->
+
+	<!-- MAIN WRAPPER DIV FOOTER START -->
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+		<div class="noprint" style="padding-bottom: 8px;"> </div>
+
+	</div>
+	<!-- MAIN WRAPPER DIV FOOTER END -->
+	</div>
+
+<script>
+
+	function popup23close(){
+		//$("#main_wrapper").css('margin-left', '-480px');
+		//$("#main_wrapper").css('margin-left', ''); 
+		//$("html").css('overflow-y','scroll');
+		$("#popup_background_zindex2b").fadeOut(0);
+		$("#popup_foreground_zindex3b").hide();
+	};
+
+</script>
+							<table class="noprint" border="0" width="100%" height="100%" cellpadding="0" style="border-collapse: collapse; background-image: url('https://portal.svsd.net/_Images/FooterRepeat.png'); background-repeat: repeat-x;">
+								<tbody><tr>
+									<td align="center" valign="top"><img border="0" src="https://portal.svsd.net/_Images/Footer.png" width="484" height="411" /></td>
+								</tr>
+							</tbody></table>
+
+
+
+</body></html>
