@@ -9,36 +9,16 @@ from bs4 import BeautifulSoup as BS
 from auth import *
 
 
-option = webdriver.ChromeOptions()
-option.add_argument(' — incognito')
-browser = webdriver.Chrome(executable_path='/home/drewvlaz/grade-checker-script/chromedriver_linux64/chromedriver', chrome_options=option)
+class Subject:
+    def __init__(self, name):
+        self.name = name
 
-subjects = ['chem', 'span', 'calc', 'lang', 'hist', 'prog']
-class_titles = [
-        '[HS] AP CHEMISTRY', 
-        '[HS] HON SPANISH 4', 
-        '[HS] AP CALCULUS AB', 
-        '[HS] AP LANGUAGE-COMP', 
-        '[HS] AP US HISTORY', 
-        '[HS] CHS INTRO PROGRAM']
+    def html_to_soup(self):
+        """ grab html source from subject page and parse into soup with BeautifulSoup """
 
-def get_html(subjects, class_titles):
-
-    # go to website and login
-    browser.get(URL)
-    browser.find_element_by_id('txt_Username').send_keys(USERNAME)
-    browser.find_element_by_id('txt_Password').send_keys(PASSWORD + '\n')
-
-    # get html of home page
-    file = open('source.html', 'w+')
-    file.write(browser.page_source)
-    file.close
-
-    # get html containing assignments for each class
-    index = 0
-    for class_name in class_titles:
         # find class title to click
-        target = browser.find_element_by_xpath(f'//*[contains(text(), "{class_name}")]')
+        target = browser.find_element_by_xpath(f'//*[contains(text(), "{self.name}")]')
+        # target = browser.find_element_by_xpath(f'//*[contains(text(), "{}")]'.format(self.name))
         target.click()
 
         # wait for grades to load
@@ -46,166 +26,170 @@ def get_html(subjects, class_titles):
         WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="div_class"]/table[1]/tbody/tr[1]/td/table/tbody/tr/td[1]')))
         time.sleep(1)
 
-        # save html
-        file_name = 'source_' + str(subjects[index]) + '.html'
-        file = open(file_name, 'w+')
-        file.write(browser.page_source)
-        file.close
-
-        index += 1
-
-    # close browser
-    browser.quit()
-
-def create_soup(subject):
-
-    file_name = 'source_' + subject + '.html'
-
-    # open file if it exists and parse it into soup, else create file and parse
-    with open(file_name, 'r') as file:
-        soup = BS(file.read(), 'html.parser')
-
-    return soup
+        html = browser.page_source
+        self.soup = BS(html, 'html.parser')
 
 
-def get_assignment_scores(subject):
+    def get_letter_grade(self):
+        """ get list containing the overall percentage and letter grade for the subject """
 
-    soup = create_soup(subject)
+        # store percent and letter grade in a list
+        elem = self.soup.find('b', text='OVERALL')
+        # the percentage and letter grade is in tag directly after OVERALL
+        grade = elem.find_next('b')
+        self.letter_grade = str(grade.string).split('\xa0')
 
-    # store names of assignments and scores in two lists
-    name_elems = soup.find_all('font', {'style':'color: #E68A00; background-color: white;'})
-    score_elems = soup.find_all('font', {'color':'#333333'})
-    assignment_names = [str(elem.string) for elem in name_elems]
-    assignment_scores = [str(elem.string).split(' / ') for elem in score_elems if '/' in str(elem.string)]
 
-    return assignment_names, assignment_scores
+    def get_assignment_scores(self):
+        """ store names of assignments and scores in two lists and add these to the subject object"""
+
+        # some assignments have different colors
+        name_elems = self.soup.find_all('font', {'style':['color: #E68A00; background-color: white;', 'color: purple; background-color: white;']})
+        score_elems = self.soup.find_all('font', {'color':'#333333'})
+        assignment_names = [str(elem.string) for elem in name_elems]
+        assignment_scores = [str(elem.string).split(' / ') for elem in score_elems if '/' in str(elem.string)]
+
+        assignments = {}
+        index = 0
+        for assignment in assignment_names:
+            assignments[assignment] = assignment_scores[index]
+            index += 1
+
+        self.assignments = assignments
+
     
+    def check_blank_assigments(self):
+        """ create a dictionary containing the assignment name and the boolean value of that assignment not having a grade entered yet """
 
-def get_letter_grades(subject):
-
-    soup = create_soup(subject)
-
-    # store percent and letter grade in a list
-    elems = soup.find_all('b')
-    grades = [str(elem.string).split('\xa0') for elem in elems if '%' in str(elem.string)]
-
-    # delete unnecessary grade (band)
-    del grades[0]
-
-    return grades
-
-
-def count_blank_assigments(scores):
-
-    blanks = {}
-    status = False
-    index = 0
-    for score in scores:
-        if score[0] == '__':
-            status = True
-
-        # convert index to string for compatibility of dumping and loading to json
-        blanks[str(index)] = status
-
-        # reset status and increase index
+        blanks = {}
         status = False
-        index += 1
-    
-    return blanks
+        index = 0
+        for assignment in self.assignments:
+            if self.assignments[assignment][0] == '__':
+                status = True
+            blanks[assignment] = status
+            status = False
+            index += 1
+        
+        self.blanks = blanks
 
 
-def prep_source(subject):
+def login():
+    """ configure browser settings then go to URL and login with credentials from auth.py """
 
-    _, scores_subject = get_assignment_scores(subject)
+    # accessed by Subject class
+    global browser
 
-    blanks = count_blank_assigments(scores_subject)
+    # configure chrome to be incognito and not display a window gui
+    options = webdriver.ChromeOptions()
+    options.add_argument(' — incognito')
+    options.set_headless(headless=True)
+    browser = webdriver.Chrome(executable_path='/home/drewvlaz/grade-checker-script/chromedriver_linux64/chromedriver', chrome_options=options)
 
-    return blanks
+    browser.get(URL)
+    browser.find_element_by_id('txt_Username').send_keys(USERNAME)
+    browser.find_element_by_id('txt_Password').send_keys(PASSWORD + '\n')
 
 
-def write_to_json(subjects):
+def write_to_json(subject_dict):
+    """ write status of missing grades to a json file to compare to on next run """
 
     # get the status of containing blank scores for each subject and store all in list
-    blank_list = [prep_source(subject) for subject in subjects]
+    status_list = [subject.blanks for subject in subject_dict]
 
     # write list to json to compare to later
     with open('file_to_compare.json', 'w+') as file:
-        json.dump(blank_list, file, indent=4)
+        json.dump(status_list, file, indent=4)
 
 
 def send_email(msg):
+    """ use credentials from auth.py to login into email account and send email to target """
 
-    # yagmail.register(EMAIL_ADDRESS, EMAIL_PASSWORD)
     yag = yagmail.SMTP(EMAIL_ADDRESS, EMAIL_PASSWORD)
-    yag.send(to='314dsv@gmail.com', subject='Grades Updated', contents=msg)
+    yag.send(to=TARGET_ADDRESS, subject='Grades Updated', contents=msg)
 
 
-def get_differences(blank_list, compare_list):
+def find_updates(new_grades, old_grades):
+    """ find which individual assignments have been updated and returns a dic containing class and each updated assignment """
 
-    result = []
-    subject_index_list = []
-    index = 0
-    for subject in blank_list:
-        if blank_list[index] != compare_list[index]:
-            result.append(subject)
-            subject_index_list.append(index)
+    updated_assignments = {}
+    assignment_list = []
+    for subject in new_grades:
+        for assignment in new_grades[subject]:
+            if new_grades[subject][assignment] != old_grades[subject][assignment]:
+                # list of assingments that have been updated
+                assignment_list.append(assignment)
+        # prevent from adding empty lists to the dict updated_assignments
+        if len(assignment_list) >= 1:
+            updated_assignments[subject] = assignment_list
+            assignment_list = []
 
-        index += 1
+    return updated_assignments
 
-    return result
 
-        
 def main():
 
+    subject_names = [
+            '[HS] AP CHEMISTRY', 
+            '[HS] HON SPANISH 4', 
+            '[HS] AP CALCULUS AB', 
+            '[HS] AP LANGUAGE-COMP', 
+            '[HS] AP US HISTORY', 
+            '[HS] CHS INTRO PROGRAM'
+            ]
+    subject_dict = {name:Subject(name) for name in subject_names}
 
-    # get html of each subject with their assignment scores
-    get_html(subjects, class_titles)
+    login()
+    for name in subject_names:
+        subject_dict[name].html_to_soup()
+    browser.quit()
 
-    not_first_run = True
+    for name in subject_names:
+        subject_dict[name].get_letter_grade()
+        subject_dict[name].get_assignment_scores()
+        subject_dict[name].check_blank_assigments()
 
     # open or create json file to hold state of grades
     try:
         with open('file_to_compare.json', 'r') as file:
-            old_blanks = json.load(file)
+            file_to_compare = json.load(file)
+            old_grades = {}
+            for i in range(len(subject_names)):
+                old_grades[subject_names[i]] = file_to_compare[i]
 
     except:
-        write_to_json(subjects)
-        old_blanks = [prep_source(subject) for subject in subjects]
-        not_first_run = False
+        write_to_json(subject_dict)
 
-    # don't check if first time running script
-    if not_first_run:
+    new_grades = {name : subject_dict[name].blanks for name in subject_names}
+    if new_grades != old_grades:
+        # Grades Updated!
+        updated_grades = find_updates(new_grades, old_grades)
+        for sub in updated_grades:
+            # for each assignment
+            for i in range(len(updated_grades[sub])):
+                subject = subject_dict[sub] 
+                name = subject.name
+                # updated_grades is dict --> {'subject_name':['assignment_1', 'assignment_2']}
+                assignment = updated_grades[sub][i]
+                # subject.assignments is dict --> {'assignment_name':['9', '10']}
+                my_score = subject.assignments[assignment][0]
+                total_score = subject.assignments[assignment][1]
+                # subject.letter_grade is list --> {'99%', 'A'}
+                new_percent = subject.letter_grade[0]
+                letter_grade = subject.letter_grade[1]
 
-        new_blanks = [prep_source(subject) for subject in subjects]
+                msg = (
+                    f"Class: {name}"
+                    f"\nAssignment: {assignment}"
+                    f"\nScore: {my_score} / {total_score}"
+                    f"\nNew Class Grade: {new_percent} {letter_grade}"
+                    "\n\n- a python script :)"
+                    )
 
-        # check to see if there was an update
-        if new_blanks != old_blanks:
-            # Grades Updated!
-            # differences = get_differences()
-            # check each subject
-            index_subjects = 0
-            for subject in old_blanks:
-                # check each assignment for subject
-                for assignment in subject:
-                    # if there is no longer a '__' as a score
-                    if subject[assignment] == True and new_blanks[index_subjects][assignment] == False:
-                        subject_name = subjects[index_subjects]
-                        assignment_names, assignment_scores = get_assignment_scores(subject_name)
-                        letter_grade = get_letter_grades(subject_name)
+                send_email(msg)
 
-                        msg = (f"Class: {class_titles[index_subjects][5:]}"
-                                    f"\nAssignment: {assignment_names[int(assignment)]}."
-                                    f"\nScore: {assignment_scores[int(assignment)][0]}/{assignment_scores[int(assignment)][1]}"
-                                    f"\nNew Class Grade: {letter_grade[index_subjects][0]} {letter_grade[index_subjects][1]}."
-                                    "\n\n- a python script :)")
-
-                        send_email(msg)
-                        
-                index_subjects += 1
-
-            
-            # update json file
-            write_to_json(subjects)       
+        # update json file
+        write_to_json(subject_dict)
 
 
 main()
