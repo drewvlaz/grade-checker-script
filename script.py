@@ -104,7 +104,7 @@ def send_email(msg):
     yag.send(to=TARGET_ADDRESS, subject='Grades Updated', contents=msg)
 
 
-def find_updates(new_grades, old_grades, subject_names, subject_dict):
+def find_updates(new_grades, old_grades, subject_dict, subject_names):
     """ find which individual assignments have been updated and returns a dic containing class and each updated assignment """
 
     updated_assignments = {}
@@ -115,6 +115,7 @@ def find_updates(new_grades, old_grades, subject_names, subject_dict):
                 if new_grades[subject][assignment] != old_grades[subject][assignment]:
                     # list of assingments that have been updated
                     assignment_list.append(assignment)
+            # error when new assignment is added to portal and isn't in the json file
             except KeyError:
                 write_to_json(subject_dict, subject_names)
                 send_email("Something went wrong. Check portal for updates.")
@@ -142,7 +143,7 @@ def main():
     for name in subject_names:
         subject_dict[name].html_to_soup()
     browser.quit()
-
+    # ^ don't spend unnecessary processing power keeping browser open; close it and loop again for other functions
     for name in subject_names:
         subject_dict[name].get_letter_grade()
         subject_dict[name].get_assignment_scores()
@@ -160,7 +161,7 @@ def main():
     new_grades = {name : subject_dict[name].blanks for name in subject_names}
     if new_grades != old_grades:
         # Grades Updated!
-        updated_grades = find_updates(new_grades, old_grades, subject_names, subject_dict)
+        updated_grades = find_updates(new_grades, old_grades, subject_dict, subject_names)
         for sub in updated_grades:
             # for each assignment
             for i in range(len(updated_grades[sub])):
