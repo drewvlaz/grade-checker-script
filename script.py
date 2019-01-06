@@ -105,7 +105,7 @@ def send_email(msg):
 
 
 def find_updates(new_grades, old_grades, subject_dict, subject_names):
-    """ find which individual assignments have been updated and returns a dic containing class and each updated assignment """
+    """ find which individual assignments have been updated and returns a dict containing class and each updated assignment """
 
     updated_assignments = {}
     assignment_list = []
