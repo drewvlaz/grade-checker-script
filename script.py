@@ -149,7 +149,7 @@ def main():
         subject_dict[name].get_assignment_scores()
         subject_dict[name].check_blank_assigments()
 
-    # open or create json file to hold state of grades
+    # open or create json file to hold status of grades
     try:
         with open('file_to_compare.json', 'r') as file:
             file_to_compare = json.load(file)
@@ -157,8 +157,9 @@ def main():
 
     except:
         write_to_json(subject_dict, subject_names)
-
+    # same format as old_grades
     new_grades = {name : subject_dict[name].blanks for name in subject_names}
+    
     if new_grades != old_grades:
         # Grades Updated!
         updated_grades = find_updates(new_grades, old_grades, subject_dict, subject_names)
