@@ -18,7 +18,7 @@ class Subject:
 
         # find class title to click
         target = browser.find_element_by_xpath(f'//*[contains(text(), "{self.name}")]')
-        # target = browser.find_element_by_xpath(f'//*[contains(text(), "{}")]'.format(self.name))
+        # target = browser.find_element_by_xpath('//*[contains(text(), "{}")]'.format(self.name))
         target.click()
 
         # wait up to 10 sec for grades to load
@@ -104,20 +104,24 @@ def send_email(msg):
     yag.send(to=TARGET_ADDRESS, subject='Grades Updated', contents=msg)
 
 
-def find_updates(new_grades, old_grades):
+def find_updates(new_grades, old_grades, subject_names, subject_dict):
     """ find which individual assignments have been updated and returns a dic containing class and each updated assignment """
 
     updated_assignments = {}
     assignment_list = []
     for subject in new_grades:
         for assignment in new_grades[subject]:
-            if new_grades[subject][assignment] != old_grades[subject][assignment]:
-                # list of assingments that have been updated
-                assignment_list.append(assignment)
-        # prevent from adding empty lists to the dict updated_assignments
-        if len(assignment_list) >= 1:
-            updated_assignments[subject] = assignment_list
-            assignment_list = []
+            try:
+                if new_grades[subject][assignment] != old_grades[subject][assignment]:
+                    # list of assingments that have been updated
+                    assignment_list.append(assignment)
+            except KeyError:
+                write_to_json(subject_dict, subject_names)
+                send_email("Something went wrong. Check portal for updates.")
+            # prevent from adding empty lists to the dict updated_assignments
+            if len(assignment_list) >= 1:
+                updated_assignments[subject] = assignment_list
+                assignment_list = []
 
     return updated_assignments
 
@@ -156,7 +160,7 @@ def main():
     new_grades = {name : subject_dict[name].blanks for name in subject_names}
     if new_grades != old_grades:
         # Grades Updated!
-        updated_grades = find_updates(new_grades, old_grades)
+        updated_grades = find_updates(new_grades, old_grades, subject_names, subject_dict)
         for sub in updated_grades:
             # for each assignment
             for i in range(len(updated_grades[sub])):
