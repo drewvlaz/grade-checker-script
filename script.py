@@ -37,6 +37,7 @@ class Subject:
         elem = self.soup.find('b', text='OVERALL')
         # the percentage and letter grade is in tag directly after OVERALL
         grade = elem.find_next('b')
+        # need split to get rid of special character from html
         self.letter_grade = str(grade.string).split('\xa0')
 
 
@@ -48,14 +49,8 @@ class Subject:
         score_elems = self.soup.find_all('font', {'color':'#333333'})
         assignment_names = [str(elem.string) for elem in name_elems]
         assignment_scores = [str(elem.string).split(' / ') for elem in score_elems if '/' in str(elem.string)]
-
-        assignments = {}
-        index = 0
-        for assignment in assignment_names:
-            assignments[assignment] = assignment_scores[index]
-            index += 1
-
-        self.assignments = assignments
+        # create dict with assignment names as keys and scores as values
+        self.assignments = dict(zip(assignment_names, assignment_scores))
 
     
     def check_blank_assigments(self):
@@ -153,9 +148,7 @@ def main():
     try:
         with open('file_to_compare.json', 'r') as file:
             file_to_compare = json.load(file)
-            old_grades = {}
-            for i in range(len(subject_names)):
-                old_grades[subject_names[i]] = file_to_compare[i]
+            old_grades = dict(zip(subject_names, file_to_compare))
 
     except:
         write_to_json(subject_dict, subject_names)
@@ -175,7 +168,7 @@ def main():
                 # subject.assignments is dict --> {'assignment_name':['9', '10']}
                 my_score = subject.assignments[assignment][0]
                 total_score = subject.assignments[assignment][1]
-                # subject.letter_grade is list --> {'99%', 'A'}
+                # subject.letter_grade is list --> ['99%', 'A']
                 new_percent = subject.letter_grade[0]
                 letter_grade = subject.letter_grade[1]
 
