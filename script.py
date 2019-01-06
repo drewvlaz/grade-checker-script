@@ -1,5 +1,6 @@
 import time
 import json
+import sys
 import yagmail
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
@@ -23,9 +24,14 @@ class Subject:
 
         # wait up to 10 sec for grades to load
         delay = 10
-        WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="div_class"]/table[1]/tbody/tr[1]/td/table/tbody/tr/td[1]')))
-        time.sleep(1)
-
+        try:
+            WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="div_class"]/table[1]/tbody/tr[1]/td/table/tbody/tr/td[1]')))
+            time.sleep(1)
+        except TimeoutException:
+            # something failed with the browser or simply taking too long to load, better to end script and re-run
+            sys.exit()
+            #TODO: send error email or try to rerun
+        
         html = browser.page_source
         self.soup = BS(html, 'html.parser')
 
