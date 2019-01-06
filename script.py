@@ -1,5 +1,6 @@
 import time
 import json
+import sys
 import yagmail
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
@@ -23,9 +24,14 @@ class Subject:
 
         # wait up to 10 sec for grades to load
         delay = 10
-        WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="div_class"]/table[1]/tbody/tr[1]/td/table/tbody/tr/td[1]')))
-        time.sleep(1)
-
+        try:
+            WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="div_class"]/table[1]/tbody/tr[1]/td/table/tbody/tr/td[1]')))
+            time.sleep(1)
+        except TimeoutException:
+            # something failed with the browser or simply taking too long to load, better to end script and re-run
+            sys.exit()
+            #TODO: send error email or try to rerun
+        
         html = browser.page_source
         self.soup = BS(html, 'html.parser')
 
@@ -137,7 +143,7 @@ def main():
             '[HS] AP US HISTORY', 
             '[HS] CHS INTRO PROGRAM'
             ]
-    subject_dict = {name:Subject(name) for name in subject_names}
+    subject_dict = {name : Subject(name) for name in subject_names}
 
     login()
     for name in subject_names:
@@ -149,7 +155,7 @@ def main():
         subject_dict[name].get_assignment_scores()
         subject_dict[name].check_blank_assigments()
 
-    # open or create json file to hold state of grades
+    # open or create json file to hold status of grades
     try:
         with open('file_to_compare.json', 'r') as file:
             file_to_compare = json.load(file)
@@ -157,8 +163,9 @@ def main():
 
     except:
         write_to_json(subject_dict, subject_names)
-
+    # same format as old_grades
     new_grades = {name : subject_dict[name].blanks for name in subject_names}
+    
     if new_grades != old_grades:
         # Grades Updated!
         updated_grades = find_updates(new_grades, old_grades, subject_dict, subject_names)
@@ -166,7 +173,7 @@ def main():
             # for each assignment
             for i in range(len(updated_grades[sub])):
                 subject = subject_dict[sub]
-                # class name without '[HS]' in front
+                # class name without '[HS] ' in front
                 name = subject.name[5:]
                 # updated_grades is dict --> {'subject_name':['assignment_1', 'assignment_2']}
                 assignment = updated_grades[sub][i]
