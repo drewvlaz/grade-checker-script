@@ -138,7 +138,7 @@ def main():
     for name in subject_names:
         subject_dict[name].html_to_soup()
     browser.quit()
-
+    # ^ don't spend unnecessary processing power keeping browser open; close it and loop again for other functions
     for name in subject_names:
         subject_dict[name].get_letter_grade()
         subject_dict[name].get_assignment_scores()
