@@ -21,7 +21,7 @@ class Subject:
         # target = browser.find_element_by_xpath(f'//*[contains(text(), "{}")]'.format(self.name))
         target.click()
 
-        # wait for grades to load
+        # wait up to 10 sec for grades to load
         delay = 10
         WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="div_class"]/table[1]/tbody/tr[1]/td/table/tbody/tr/td[1]')))
         time.sleep(1)
