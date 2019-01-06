@@ -84,18 +84,18 @@ def login():
     options = webdriver.ChromeOptions()
     options.add_argument(' — incognito')
     options.set_headless(headless=True)
-    browser = webdriver.Chrome(executable_path='/home/drewvlaz/grade-checker-script/chromedriver_linux64/chromedriver', chrome_options=options)
+    browser = webdriver.Chrome(executable_path='chromedriver_linux64/chromedriver', chrome_options=options)
 
     browser.get(URL)
     browser.find_element_by_id('txt_Username').send_keys(USERNAME)
     browser.find_element_by_id('txt_Password').send_keys(PASSWORD + '\n')
 
 
-def write_to_json(subject_dict):
+def write_to_json(subject_dict, subject_names):
     """ write status of missing grades to a json file to compare to on next run """
 
     # get the status of containing blank scores for each subject and store all in list
-    status_list = [subject.blanks for subject in subject_dict]
+    status_list = [subject_dict[name].blanks for name in subject_names]
 
     # write list to json to compare to later
     with open('file_to_compare.json', 'w+') as file:
@@ -158,7 +158,7 @@ def main():
                 old_grades[subject_names[i]] = file_to_compare[i]
 
     except:
-        write_to_json(subject_dict)
+        write_to_json(subject_dict, subject_names)
 
     new_grades = {name : subject_dict[name].blanks for name in subject_names}
     if new_grades != old_grades:
@@ -167,8 +167,9 @@ def main():
         for sub in updated_grades:
             # for each assignment
             for i in range(len(updated_grades[sub])):
-                subject = subject_dict[sub] 
-                name = subject.name
+                subject = subject_dict[sub]
+                # class name without '[HS]' in front
+                name = subject.name[5:]
                 # updated_grades is dict --> {'subject_name':['assignment_1', 'assignment_2']}
                 assignment = updated_grades[sub][i]
                 # subject.assignments is dict --> {'assignment_name':['9', '10']}
@@ -185,6 +186,7 @@ def main():
                     f"\nNew Class Grade: {new_percent} {letter_grade}"
                     "\n\n- a python script :)"
                     )
+                # for raspberry pi that has python 3.5 and doesn't support f-strings
                 # msg = (
                 #     "Class: {name}".format(name)
                 #     "\nAssignment: {assignment}".format(assignment)
@@ -196,7 +198,7 @@ def main():
                 send_email(msg)
 
         # update json file
-        write_to_json(subject_dict)
+        write_to_json(subject_dict, subject_names)
 
 
 main()
