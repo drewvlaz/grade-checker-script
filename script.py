@@ -166,7 +166,7 @@ def main():
             # for each assignment
             for i in range(len(updated_grades[sub])):
                 subject = subject_dict[sub]
-                # class name without '[HS]' in front
+                # class name without '[HS] ' in front
                 name = subject.name[5:]
                 # updated_grades is dict --> {'subject_name':['assignment_1', 'assignment_2']}
                 assignment = updated_grades[sub][i]
