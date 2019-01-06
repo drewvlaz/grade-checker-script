@@ -186,10 +186,10 @@ def main():
                     )
                 # for raspberry pi that has python 3.5 and doesn't support f-strings
                 # msg = (
-                #     "Class: {name}".format(name)
-                #     "\nAssignment: {assignment}".format(assignment)
-                #     "\nScore: {my_score} / {total_score}".format(my_score, total_score)
-                #     "\nNew Class Grade: {new_percent} {letter_grade}".format(new_percent, letter_grade)
+                #     "Class: {}".format(name)
+                #     "\nAssignment: {}".format(assignment)
+                #     "\nScore: {} / {}".format(my_score, total_score)
+                #     "\nNew Class Grade: {} {}".format(new_percent, letter_grade)
                 #     "\n\n- a python script :)"
                 #     )
 
