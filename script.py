@@ -132,7 +132,7 @@ def main():
             '[HS] AP US HISTORY', 
             '[HS] CHS INTRO PROGRAM'
             ]
-    subject_dict = {name:Subject(name) for name in subject_names}
+    subject_dict = {name : Subject(name) for name in subject_names}
 
     login()
     for name in subject_names:
