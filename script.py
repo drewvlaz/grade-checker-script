@@ -30,7 +30,7 @@ class Subject:
         except TimeoutException:
             # something failed with the browser or simply taking too long to load, better to end script and re-run
             sys.exit()
-            #TODO: send error email or try to rerun
+            # TODO: send error email or try to rerun
         
         html = browser.page_source
         self.soup = BS(html, 'html.parser')
@@ -115,6 +115,7 @@ def find_updates(new_grades, old_grades, subject_dict, subject_names):
 
     updated_assignments = {}
     assignment_list = []
+    flag = False
     for subject in new_grades:
         for assignment in new_grades[subject]:
             try:
@@ -123,12 +124,17 @@ def find_updates(new_grades, old_grades, subject_dict, subject_names):
                     assignment_list.append(assignment)
             # error when new assignment is added to portal and isn't in the json file
             except KeyError:
-                write_to_json(subject_dict, subject_names)
+                # write_to_json(subject_dict, subject_names)
                 send_email("Something went wrong. Check portal for updates.")
+                flag = True
             # prevent from adding empty lists to the dict updated_assignments
             if len(assignment_list) >= 1:
                 updated_assignments[subject] = assignment_list
                 assignment_list = []
+                
+    if flag:
+        pass
+        # TODO: update json for specific class assignments that are missing only
 
     return updated_assignments
 
