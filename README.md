@@ -12,3 +12,4 @@
 ## How it works
    
    1. Logs into grade portal and clicks on each class to get grades
+   ![course overview](https://github.com/drewvlaz/grade-checker-script/tree/master/pics/course_overview.PNG)
