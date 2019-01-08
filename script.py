@@ -134,8 +134,7 @@ def find_updates(new_grades, old_grades, subject_dict, subject_names):
     try:
         for subject in new_grades:
             for assignment in new_grades[subject]:
-                if new_grades[subject][assignment] != old_grades[subject][assignment]:
-                    pass
+                old_grades[subject][assignment]
     # assignment(s) have been added --> update the json file
     except KeyError:
         write_to_json(subject_dict, subject_names)
