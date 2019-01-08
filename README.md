@@ -2,8 +2,8 @@
 
 ## Dependencies
 1. Selenium
-..* To interact with the chrome webdriver
+    * To interact with the chrome webdriver
 2. BeautifulSoup
-..* To parse the html source code
+    * To parse the html source code
 3. Yagmail
-..* To send emails
+    * To send emails
