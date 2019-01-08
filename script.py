@@ -116,7 +116,6 @@ def find_updates(new_grades, old_grades, subject_dict, subject_names):
 
     updated_assignments = {}
     assignment_list = []
-    flag = False
     # iterate through old_grades because if iterating through new_grades and an assignment in new_grades isn't in old_grades
     # it will throw a KeyError exception in the if statement
     # at the end of the run, it will update the json file
@@ -131,10 +130,15 @@ def find_updates(new_grades, old_grades, subject_dict, subject_names):
             if len(assignment_list) >= 1:
                 updated_assignments[subject] = assignment_list
                 assignment_list = []
-                
-    if flag:
-        pass
-        # TODO: update json for specific class assignments that are missing only
+    # check to see if new assignments have been added
+    try:
+        for subject in new_grades:
+            for assignment in new_grades[subject]:
+                if new_grades[subject][assignment] != old_grades[subject][assignment]:
+                    pass
+    # assignment(s) have been added --> update the json file
+    except KeyError:
+        write_to_json(subject_dict, subject_names)
 
     return updated_assignments
 
