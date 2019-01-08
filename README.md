@@ -12,4 +12,4 @@
 ## How it works
    
    1. Logs into grade portal and clicks on each class to get grades
-   <img src="https://github.com/drewvlaz/grade-checker-script/tree/master/pics/course_overview.PNG" alt="course overview">
+   <img src="https://github.com/drewvlaz/grade-checker-script/tree/master/pics/course_overview.PNG" alt="course overview"/>
