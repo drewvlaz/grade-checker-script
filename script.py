@@ -95,8 +95,9 @@ def login():
 def write_to_json(subject_dict, subject_names):
     """ write status of missing grades to a json file to compare to on next run """
 
-    # get the status of containing blank scores for each subject and store all in list
+    # get the status of containing blank scores for each subject
     status_list = [subject_dict[name].blanks for name in subject_names]
+    # TODO: test status_list as a dict containing subject name
 
     # write list to json to compare to later
     with open('file_to_compare.json', 'w+') as file:
@@ -116,17 +117,16 @@ def find_updates(new_grades, old_grades, subject_dict, subject_names):
     updated_assignments = {}
     assignment_list = []
     flag = False
-    for subject in new_grades:
-        for assignment in new_grades[subject]:
-            try:
-                if new_grades[subject][assignment] != old_grades[subject][assignment]:
-                    # list of assingments that have been updated
-                    assignment_list.append(assignment)
-            # error when new assignment is added to portal and isn't in the json file
-            except KeyError:
-                # write_to_json(subject_dict, subject_names)
-                send_email("Something went wrong. Check portal for updates.")
-                flag = True
+    # iterate through old_grades because if iterating through new_grades and an assignment in new_grades isn't in old_grades
+    # it will throw a KeyError exception in the if statement
+    # at the end of the run, it will update the json file
+    # this script makes the assumption that a teacher will first add an assignment as a blank grade and add the grade later
+    for subject in old_grades:
+        for assignment in old_grades[subject]:
+            # new_grades will be False and old_grades will be True in relation to the score == '__'
+            if new_grades[subject][assignment] != old_grades[subject][assignment]:
+                # list of assingments that have been updated
+                assignment_list.append(assignment)
             # prevent from adding empty lists to the dict updated_assignments
             if len(assignment_list) >= 1:
                 updated_assignments[subject] = assignment_list
