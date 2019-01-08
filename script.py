@@ -138,6 +138,7 @@ def find_updates(new_grades, old_grades, subject_dict, subject_names):
     # assignment(s) have been added --> update the json file
     except KeyError:
         write_to_json(subject_dict, subject_names)
+        # TODO: send email notifying what assignment has been added to what class
 
     return updated_assignments
 
