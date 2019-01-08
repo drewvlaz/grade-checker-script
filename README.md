@@ -13,5 +13,7 @@
    
    1. Logs into grade portal and clicks on each class to get grades
    <img src="https://github.com/drewvlaz/grade-checker-script/blob/master/pics/course_overview.PNG" alt="course overview" width="600"/>
+   <img src="https://github.com/drewvlaz/grade-checker-script/blob/master/pics/.PNG" alt="course overview" width="600"/>
+
 
 
