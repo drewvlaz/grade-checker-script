@@ -12,6 +12,6 @@
 ## How it works
    
    1. Logs into grade portal and clicks on each class to get grades
-   <img src="https://github.com/drewvlaz/grade-checker-script/blob/master/pics/course_overview.PNG" alt="course overview" width="460"/>
-   <img src="https://github.com/drewvlaz/draw_mnist/blob/master/thumbnail.jpg" alt="thumbnail" width="460"/>
+   <img src="https://github.com/drewvlaz/grade-checker-script/blob/master/pics/course_overview.PNG" alt="course overview" width="600"/>
+
 
