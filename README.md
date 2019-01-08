@@ -7,3 +7,8 @@
     * To parse the html source code
 3. Yagmail
     * To send emails
+
+
+## How it works
+   
+   1. Logs into grade portal and clicks on each class to get grades
