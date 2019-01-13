@@ -1,6 +1,0 @@
-USERNAME = ''
-PASSWORD = ''
-URL = 'https://portal.svsd.net/students/'
-EMAIL_ADDRESS = ''
-EMAIL_PASSWORD = ''
-TARGET_ADDRESS = ''

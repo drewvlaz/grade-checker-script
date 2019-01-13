@@ -10,6 +10,13 @@ from bs4 import BeautifulSoup as BS
 from auth import *
 
 
+def send_email(subj, msg):
+    """ configures email client and sends email """
+
+    yag = yagmail.SMTP(EMAIL_ADDRESS, EMAIL_PASSWORD)
+    yag.send(to=TARGET_ADDRESS, subject=subj, contents=msg)
+
+
 class Subject:
     def __init__(self, name):
         self.name = name
@@ -30,7 +37,6 @@ class Subject:
         except TimeoutException:
             # something failed with the browser or simply taking too long to load, better to end script and re-run
             sys.exit()
-            # TODO: send error email or try to rerun
         
         html = browser.page_source
         self.soup = BS(html, 'html.parser')
@@ -55,6 +61,15 @@ class Subject:
         score_elems = self.soup.find_all('font', {'color':'#333333'})
         assignment_names = [str(elem.string) for elem in name_elems]
         assignment_scores = [str(elem.string).split(' / ') for elem in score_elems if '/' in str(elem.string)]
+        # check for quarterly
+        assignment_names.append("Quarterly Exam")
+        quarterly = self.soup.find('b', text='QUARTERLY EXAM (15%)')
+        if quarterly != None:
+            q_grade = quarterly.find_next('font')
+            q_grade_str = str(q_grade.string).split('%')
+            assignment_scores.append([q_grade_str[0], 100])
+        else:
+            assignment_scores.append(['__', 100])
         # create dict with assignment names as keys and scores as values
         self.assignments = dict(zip(assignment_names, assignment_scores))
 
@@ -104,13 +119,6 @@ def write_to_json(subject_dict, subject_names):
         json.dump(status_list, file, indent=4)
 
 
-def send_email(msg):
-    """ use credentials from auth.py to login into email account and send email to target """
-
-    yag = yagmail.SMTP(EMAIL_ADDRESS, EMAIL_PASSWORD)
-    yag.send(to=TARGET_ADDRESS, subject='Grades Updated', contents=msg)
-
-
 def find_updates(new_grades, old_grades, subject_dict, subject_names):
     """ find which individual assignments have been updated and returns a dict containing class and each updated assignment """
 
@@ -130,17 +138,47 @@ def find_updates(new_grades, old_grades, subject_dict, subject_names):
             if len(assignment_list) >= 1:
                 updated_assignments[subject] = assignment_list
                 assignment_list = []
+
     # check to see if new assignments have been added
-    try:
-        for subject in new_grades:
-            for assignment in new_grades[subject]:
+    for subject in new_grades:
+        for assignment in new_grades[subject]:
+            try:
                 old_grades[subject][assignment]
-    # assignment(s) have been added --> update the json file
-    except KeyError:
-        write_to_json(subject_dict, subject_names)
-        # TODO: send email notifying what assignment has been added to what class
+            # will throw error if an assignment in new_grades is not in old_grades
+            except KeyError:
+                # check to see if the new assignment has a score already, if so send email
+                if subject_dict[subject].blanks[assignment] == False:
+                    construct_email(subject_dict, assignment, subject)
 
     return updated_assignments
+
+
+def construct_email(subject_dict, assignment, subject):
+    """ use credentials from auth.py to login into email account and send email to target """
+
+    subj = subject_dict[subject]
+    # class name without '[HS] ' in front
+    name = subj.name[5:]
+    # subj.assignments is dict --> {'assignment_name':['9', '10']}
+    my_score = subj.assignments[assignment][0]
+    total_score = subj.assignments[assignment][1]
+    # subj.letter_grade is list --> ['99%', 'A']
+    new_percent = subj.letter_grade[0]
+    letter_grade = subj.letter_grade[1]
+
+    msg = (
+        f"\nAssignment: {assignment}"
+        f"\nScore: {my_score} / {total_score}"
+        f"\nClass Grade: {new_percent} {letter_grade}"
+        )
+    # for raspberry pi that has python 3.5 and doesn't support f-strings
+    # msg = (
+    #     "\nAssignment: {}".format(assignment)
+    #     "\nScore: {} / {}".format(my_score, total_score)
+    #     "\nClass Grade: {} {}".format(new_percent, letter_grade)
+    #     )
+    
+    send_email(name, msg)
 
 
 def main():
@@ -173,44 +211,19 @@ def main():
 
     except:
         write_to_json(subject_dict, subject_names)
+        old_grades = {name : subject_dict[name].blanks for name in subject_names}
     # same format as old_grades
     new_grades = {name : subject_dict[name].blanks for name in subject_names}
     
     if new_grades != old_grades:
         # Grades Updated!
         updated_grades = find_updates(new_grades, old_grades, subject_dict, subject_names)
-        for sub in updated_grades:
+        for subject in updated_grades:
             # for each assignment
-            for i in range(len(updated_grades[sub])):
-                subject = subject_dict[sub]
-                # class name without '[HS] ' in front
-                name = subject.name[5:]
+            for i in range(len(updated_grades[subject])):
                 # updated_grades is dict --> {'subject_name':['assignment_1', 'assignment_2']}
-                assignment = updated_grades[sub][i]
-                # subject.assignments is dict --> {'assignment_name':['9', '10']}
-                my_score = subject.assignments[assignment][0]
-                total_score = subject.assignments[assignment][1]
-                # subject.letter_grade is list --> ['99%', 'A']
-                new_percent = subject.letter_grade[0]
-                letter_grade = subject.letter_grade[1]
-
-                msg = (
-                    f"Class: {name}"
-                    f"\nAssignment: {assignment}"
-                    f"\nScore: {my_score} / {total_score}"
-                    f"\nNew Class Grade: {new_percent} {letter_grade}"
-                    "\n\n- a python script :)"
-                    )
-                # for raspberry pi that has python 3.5 and doesn't support f-strings
-                # msg = (
-                #     "Class: {}".format(name)
-                #     "\nAssignment: {}".format(assignment)
-                #     "\nScore: {} / {}".format(my_score, total_score)
-                #     "\nNew Class Grade: {} {}".format(new_percent, letter_grade)
-                #     "\n\n- a python script :)"
-                #     )
-
-                send_email(msg)
+                assignment = updated_grades[subject][i]
+                construct_email(subject_dict, assignment, subject)
 
         # update json file
         write_to_json(subject_dict, subject_names)
