@@ -37,4 +37,10 @@
 ## auth.py
    Fill out with the appropriate credentials. Details in the file of each element.
 
+## Chromedriver
+   Download the appropiate chromedriver for your OS <a href="http://chromedriver.chromium.org/downloads"> here.</a> Then update the
+   correct path in the code
+   ```Python
+   import
+   ```
 
