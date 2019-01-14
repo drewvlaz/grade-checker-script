@@ -124,31 +124,22 @@ def find_updates(new_grades, old_grades, subject_dict, subject_names):
 
     updated_assignments = {}
     assignment_list = []
-    # iterate through old_grades because if iterating through new_grades and an assignment in new_grades isn't in old_grades
-    # it will throw a KeyError exception in the if statement
-    # at the end of the run, it will update the json file
-    # this script makes the assumption that a teacher will first add an assignment as a blank grade and add the grade later
-    for subject in old_grades:
-        for assignment in old_grades[subject]:
+    for subject in new_grades:
+        for assignment in new_grades[subject]:
             # new_grades will be False and old_grades will be True in relation to the score == '__'
-            if new_grades[subject][assignment] != old_grades[subject][assignment]:
-                # list of assingments that have been updated
-                assignment_list.append(assignment)
+            try:
+                if new_grades[subject][assignment] != old_grades[subject][assignment]:
+                    # list of assingments that have been updated
+                    assignment_list.append(assignment)
+            # KeyError will be thrown if a new assignment was added in new_grades that isnt in old_grades
+            except KeyError:
+                # the new assignment already has a grade in it
+                if subject_dict[subject].blanks[assignment] == False:
+                    assignment_list.append(assignment)
             # prevent from adding empty lists to the dict updated_assignments
             if len(assignment_list) >= 1:
                 updated_assignments[subject] = assignment_list
                 assignment_list = []
-
-    # check to see if new assignments have been added
-    for subject in new_grades:
-        for assignment in new_grades[subject]:
-            try:
-                old_grades[subject][assignment]
-            # will throw error if an assignment in new_grades is not in old_grades
-            except KeyError:
-                # check to see if the new assignment has a score already, if so send email
-                if subject_dict[subject].blanks[assignment] == False:
-                    construct_email(subject_dict, assignment, subject)
 
     return updated_assignments
 
