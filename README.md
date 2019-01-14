@@ -24,7 +24,15 @@
    
    2. Parses the html and extracts assignment names and scores for each class, storing results in multiple dictionaries
    
-   3. For each assignment, a dictionary is made containing ```True``` if a score for an assignment == '__' (it is blank), 
-
+   3. For each class, a dictionary has been made containing ```True``` if a score for an assignment == '__' (it is blank), and ```False```
+   otherwise. These dictionaries were then appended to a list and written to a json file to compare to later.
+   
+   4. The above process repeats for the current grades and compares to see if it is equal to the list stored in the json file. If they are
+   different, an assignment score has been updated and it sends an email or a new assignment has been added in which case the script
+   checks to see if the new assignment has a grade and if so sends an email.
+   
+   5. If grades have been updated, the json file is overwritten and updated with the new grades.
+   
+## authpy
 
 
