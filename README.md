@@ -25,7 +25,7 @@
    
    2. Parses the html and extracts assignment names and scores for each class, storing results in multiple dictionaries
    
-   3. For each class, a dictionary has been made containing ```True``` if a score for an assignment ```== '__'``` (it is blank), 
+   3. For each class, a dictionary has been made containing ```True``` if a score for an assignment equals ```'__'``` (it is blank), 
    and ```False```
    otherwise. These dictionaries were then appended to a list and written to a json file to compare to later.
    
