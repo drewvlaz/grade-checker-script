@@ -33,6 +33,6 @@
    
    5. If grades have been updated, the json file is overwritten and updated with the new grades.
    
-## authpy
+## auth.py
 
 
