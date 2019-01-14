@@ -11,7 +11,8 @@
 
 ## Overview
    This script logs into my student portal and grabs my current grades. It then compares it to a previous version of my grades
-   to see if any assignments were updated. If an assignment grade has been updated, the scripts sends an email to notify me.
+   to see if any assignments were updated. If an assignment grade has been updated, the scripts sends an email to notify me. Currently,
+   I have this script running on a Raspberry Pi Zero W and scheduled it to run every 15 minutes with crontab.
 
 
 ## How it works
@@ -34,5 +35,6 @@
    5. If grades have been updated, the json file is overwritten and updated with the new grades.
    
 ## auth.py
+   Fill out with the appropriate credentials. Details in the file of each element.
 
 
