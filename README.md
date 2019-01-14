@@ -24,9 +24,11 @@
    
    2. Parses the html and extracts assignment names and scores for each class, storing results in multiple dictionaries
    
-   3. For each assignment, a dictionary is made containing '''python
-   True''' 
-   if a score for an assignment == '__' (it is blank), 
+   3. For each assignment, a dictionary is made containing 
+   '''python
+      True
+  '''
+if a score for an assignment == '__' (it is blank), 
 
 
 
