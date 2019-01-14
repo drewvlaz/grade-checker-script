@@ -39,8 +39,8 @@
 
 ## Chromedriver
    Download the appropiate chromedriver for your OS <a href="http://chromedriver.chromium.org/downloads"> here.</a> Then update the
-   correct path in the code
+   correct path in the ```login()``` function:
    ```Python
-   import
+   browser = webdriver.Chrome(executable_path='path/to/chromedriver', chrome_options=options)
    ```
 
