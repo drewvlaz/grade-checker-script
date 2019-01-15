@@ -166,7 +166,7 @@ def construct_email(subject_dict, assignment, subject):
         f"\nAssignment: {assignment}"
         f"\nScore: {my_score} / {total_score}"
         f"\nClass Grade: {new_percent} {letter_grade}"
-        )
+    )
     # for raspberry pi that has python 3.5 and doesn't support f-strings
     # msg = (
     #     "\nAssignment: {}".format(assignment)
