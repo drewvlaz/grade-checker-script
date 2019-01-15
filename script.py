@@ -34,7 +34,7 @@ class Subject:
         try:
             WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="div_class"]/table[1]/tbody/tr[1]/td/table/tbody/tr/td[1]')))
             time.sleep(1)
-        except TimeoutException:
+        except:
             # something failed with the browser or simply taking too long to load, better to end script and re-run
             sys.exit()
         
@@ -62,14 +62,12 @@ class Subject:
         assignment_names = [str(elem.string) for elem in name_elems]
         assignment_scores = [str(elem.string).split(' / ') for elem in score_elems if '/' in str(elem.string)]
         # check for quarterly
-        assignment_names.append("Quarterly Exam")
         quarterly = self.soup.find('b', text='QUARTERLY EXAM (15%)')
         if quarterly != None:
             q_grade = quarterly.find_next('font')
             q_grade_str = str(q_grade.string).split('%')
+            assignment_names.append("Quarterly Exam")
             assignment_scores.append([q_grade_str[0], 100])
-        else:
-            assignment_scores.append(['__', 100])
         # create dict with assignment names as keys and scores as values
         self.assignments = dict(zip(assignment_names, assignment_scores))
 
@@ -107,11 +105,11 @@ def login():
     browser.find_element_by_id('txt_Password').send_keys(PASSWORD + '\n')
 
 
-def write_to_json(subject_dict, subject_names):
+def write_to_json(subject_dict):
     """ write status of missing grades to a json file to compare to on next run """
 
     # get the status of containing blank scores for each subject
-    status_list = [subject_dict[name].blanks for name in subject_names]
+    status_list = [subj.blanks for subj in subject_dict.values()]
     # TODO: test status_list as a dict containing subject name
 
     # write list to json to compare to later
@@ -119,36 +117,27 @@ def write_to_json(subject_dict, subject_names):
         json.dump(status_list, file, indent=4)
 
 
-def find_updates(new_grades, old_grades, subject_dict, subject_names):
+def find_updates(new_grades, old_grades, subject_dict):
     """ find which individual assignments have been updated and returns a dict containing class and each updated assignment """
 
     updated_assignments = {}
     assignment_list = []
-    # iterate through old_grades because if iterating through new_grades and an assignment in new_grades isn't in old_grades
-    # it will throw a KeyError exception in the if statement
-    # at the end of the run, it will update the json file
-    # this script makes the assumption that a teacher will first add an assignment as a blank grade and add the grade later
-    for subject in old_grades:
-        for assignment in old_grades[subject]:
+    for subject in new_grades:
+        for assignment in new_grades[subject]:
             # new_grades will be False and old_grades will be True in relation to the score == '__'
-            if new_grades[subject][assignment] != old_grades[subject][assignment]:
-                # list of assingments that have been updated
-                assignment_list.append(assignment)
+            try:
+                if new_grades[subject][assignment] == False and old_grades[subject][assignment] == True:
+                    # list of assingments that have been updated
+                    assignment_list.append(assignment)
+            # KeyError will be thrown if a new assignment was added in new_grades that isnt in old_grades
+            except KeyError:
+                # the new assignment already has a grade in it
+                if subject_dict[subject].blanks[assignment] == False:
+                    assignment_list.append(assignment)
             # prevent from adding empty lists to the dict updated_assignments
             if len(assignment_list) >= 1:
                 updated_assignments[subject] = assignment_list
                 assignment_list = []
-
-    # check to see if new assignments have been added
-    for subject in new_grades:
-        for assignment in new_grades[subject]:
-            try:
-                old_grades[subject][assignment]
-            # will throw error if an assignment in new_grades is not in old_grades
-            except KeyError:
-                # check to see if the new assignment has a score already, if so send email
-                if subject_dict[subject].blanks[assignment] == False:
-                    construct_email(subject_dict, assignment, subject)
 
     return updated_assignments
 
@@ -194,14 +183,14 @@ def main():
     subject_dict = {name : Subject(name) for name in subject_names}
 
     login()
-    for name in subject_names:
-        subject_dict[name].html_to_soup()
+    for subj in subject_dict.values():
+        subj.html_to_soup()
     browser.quit()
     # ^ don't spend unnecessary processing power keeping browser open; close it and loop again for other functions
-    for name in subject_names:
-        subject_dict[name].get_letter_grade()
-        subject_dict[name].get_assignment_scores()
-        subject_dict[name].check_blank_assigments()
+    for subj in subject_dict.values():
+        subj.get_letter_grade()
+        subj.get_assignment_scores()
+        subj.check_blank_assigments()
 
     # open or create json file to hold status of grades
     try:
@@ -210,14 +199,14 @@ def main():
             old_grades = dict(zip(subject_names, file_to_compare))
 
     except:
-        write_to_json(subject_dict, subject_names)
+        write_to_json(subject_dict)
         old_grades = {name : subject_dict[name].blanks for name in subject_names}
     # same format as old_grades
     new_grades = {name : subject_dict[name].blanks for name in subject_names}
     
     if new_grades != old_grades:
         # Grades Updated!
-        updated_grades = find_updates(new_grades, old_grades, subject_dict, subject_names)
+        updated_grades = find_updates(new_grades, old_grades, subject_dict)
         for subject in updated_grades:
             # for each assignment
             for i in range(len(updated_grades[subject])):
@@ -226,7 +215,7 @@ def main():
                 construct_email(subject_dict, assignment, subject)
 
         # update json file
-        write_to_json(subject_dict, subject_names)
+        write_to_json(subject_dict)
 
 
 main()
