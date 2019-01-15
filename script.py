@@ -17,13 +17,6 @@ from auth import (
 )
 
 
-def send_email(subj, msg):
-    """ configures email client and sends email """
-
-    yag = yagmail.SMTP(EMAIL_ADDRESS, EMAIL_PASSWORD)
-    yag.send(to=TARGET_ADDRESS, subject=subj, contents=msg)
-
-
 class Subject:
     def __init__(self, name):
         self.name = name
@@ -147,6 +140,13 @@ def find_updates(new_grades, old_grades, subject_dict):
                 assignment_list = []
 
     return updated_assignments
+
+
+def send_email(subj, msg):
+    """ configures email client and sends email """
+
+    yag = yagmail.SMTP(EMAIL_ADDRESS, EMAIL_PASSWORD)
+    yag.send(to=TARGET_ADDRESS, subject=subj, contents=msg)
 
 
 def construct_email(subject_dict, assignment, subject):
