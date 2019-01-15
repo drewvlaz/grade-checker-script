@@ -7,7 +7,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC 
 from bs4 import BeautifulSoup as BS
-from auth import *
+from auth import (
+    USERNAME,
+    PASSWORD,
+    URL,
+    EMAIL_ADDRESS,
+    EMAIL_PASSWORD,
+    TARGET_ADDRESS
+)
 
 
 def send_email(subj, msg):
