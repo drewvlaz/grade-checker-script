@@ -172,7 +172,7 @@ def construct_email(subject_dict, assignment, subject):
     #     "\nAssignment: {}".format(assignment)
     #     "\nScore: {} / {}".format(my_score, total_score)
     #     "\nClass Grade: {} {}".format(new_percent, letter_grade)
-    #     )
+    # )
     
     send_email(name, msg)
 
@@ -180,13 +180,13 @@ def construct_email(subject_dict, assignment, subject):
 def main():
 
     subject_names = [
-            '[HS] AP CHEMISTRY', 
-            '[HS] HON SPANISH 4', 
-            '[HS] AP CALCULUS AB', 
-            '[HS] AP LANGUAGE-COMP', 
-            '[HS] AP US HISTORY', 
-            '[HS] CHS INTRO PROGRAM'
-            ]
+        '[HS] AP CHEMISTRY', 
+        '[HS] HON SPANISH 4', 
+        '[HS] AP CALCULUS AB', 
+        '[HS] AP LANGUAGE-COMP', 
+        '[HS] AP US HISTORY', 
+        '[HS] CHS INTRO PROGRAM'
+    ]
     subject_dict = {name : Subject(name) for name in subject_names}
 
     login()
