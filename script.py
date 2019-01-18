@@ -107,11 +107,12 @@ def login():
     browser.find_element_by_id('txt_Password').send_keys(PASSWORD + '\n')
 
 
-def write_to_json(subject_dict):
+def write_to_json(subject_dict, subject_names):
     """ write status of missing grades to a json file to compare to on next run """
 
     # get the status of containing blank scores for each subject
-    status_list = [subj.blanks for subj in subject_dict.values()]
+    # use subject_names to iterate in order to keep subjects in order, using subject_dict.values() doesnt preserver order
+    status_list = [subject_dict[name].blanks for name in subject_names]
     # TODO: test status_list as a dict containing subject name
 
     # write list to json to compare to later
@@ -172,8 +173,8 @@ def construct_email(subject_dict, assignment, subject):
     # for raspberry pi that has python 3.5 and doesn't support f-strings
     # msg = (
     #     "\nAssignment: {}".format(assignment)
-    #     "\nScore: {} / {}".format(my_score, total_score)
-    #     "\nClass Grade: {} {}".format(new_percent, letter_grade)
+    #     + "\nScore: {} / {}".format(my_score, total_score)
+    #     + "\nClass Grade: {} {}".format(new_percent, letter_grade)
     # )
     
     send_email(name, msg)
@@ -208,7 +209,7 @@ def main():
             old_grades = dict(zip(subject_names, file_to_compare))
 
     except:
-        write_to_json(subject_dict)
+        write_to_json(subject_dict, subject_names)
         old_grades = {name : subject_dict[name].blanks for name in subject_names}
     # same format as old_grades
     new_grades = {name : subject_dict[name].blanks for name in subject_names}
@@ -224,7 +225,7 @@ def main():
                 construct_email(subject_dict, assignment, subject)
 
         # update json file
-        write_to_json(subject_dict)
+        write_to_json(subject_dict, subject_names)
 
 
 main()
