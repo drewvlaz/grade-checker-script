@@ -136,10 +136,10 @@ def find_updates(new_grades, old_grades, subject_dict):
                 # the new assignment already has a grade in it
                 if subject_dict[subject].blanks[assignment] == False:
                     assignment_list.append(assignment)
-            # prevent from adding empty lists to the dict updated_assignments
-            if len(assignment_list) >= 1:
-                updated_assignments[subject] = assignment_list
-                assignment_list = []
+        # prevent from adding empty lists to the dict updated_assignments
+        if len(assignment_list) >= 1:
+            updated_assignments[subject] = assignment_list
+            assignment_list = []
 
     return updated_assignments
 
