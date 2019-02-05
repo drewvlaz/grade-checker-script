@@ -154,7 +154,7 @@ def send_email(subj, msg):
 def construct_email(subject_dict, assignment, subject):
     """ use credentials from auth.py to login into email account and send email to target """
 
-    subj = subject_dict[subject]
+    subj = assignment
     # class name without '[HS] ' in front
     name = subj.name[5:]
     # subj.assignments is dict --> {'assignment_name':['9', '10']}
@@ -171,8 +171,7 @@ def construct_email(subject_dict, assignment, subject):
     # )
     # for raspberry pi that has python 3.5 and doesn't support f-strings
     msg = (
-        "\nAssignment: {}".format(assignment)
-        + "\nScore: {} / {}".format(my_score, total_score)
+        "Score: {} / {}".format(my_score, total_score)
         + "\nClass Grade: {} {}".format(new_percent, letter_grade)
     )
     
