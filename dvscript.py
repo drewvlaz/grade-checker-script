@@ -156,7 +156,7 @@ def construct_email(subject_dict, assignment, subject):
 
     subj = subject_dict[subject]
     # class name without '[HS] ' in front
-    # name = subj.name[5:]
+    name = subj.name[5:]
     # subj.assignments is dict --> {'assignment_name':['9', '10']}
     my_score = subj.assignments[assignment][0]
     total_score = subj.assignments[assignment][1]
@@ -171,7 +171,8 @@ def construct_email(subject_dict, assignment, subject):
     # )
     # for raspberry pi that has python 3.5 and doesn't support f-strings
     msg = (
-        "Score: {} / {}".format(my_score, total_score)
+        "Class: {}".format(name)
+        + "\nScore: {} / {}".format(my_score, total_score)
         + "\nClass Grade: {} {}".format(new_percent, letter_grade)
     )
     
