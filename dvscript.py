@@ -154,9 +154,9 @@ def send_email(subj, msg):
 def construct_email(subject_dict, assignment, subject):
     """ use credentials from auth.py to login into email account and send email to target """
 
-    subj = assignment
+    subj = subject_dict[subject]
     # class name without '[HS] ' in front
-    name = subj.name[5:]
+    # name = subj.name[5:]
     # subj.assignments is dict --> {'assignment_name':['9', '10']}
     my_score = subj.assignments[assignment][0]
     total_score = subj.assignments[assignment][1]
@@ -175,7 +175,7 @@ def construct_email(subject_dict, assignment, subject):
         + "\nClass Grade: {} {}".format(new_percent, letter_grade)
     )
     
-    send_email(name, msg)
+    send_email(assignment, msg)
 
 
 def main():
