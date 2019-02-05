@@ -59,7 +59,7 @@ class Subject:
         """ store names of assignments and scores in two lists and add these to the subject object"""
 
         # some assignments have different colors
-        name_elems = self.soup.find_all('font', {'style':['color: #E68A00; background-color: white;', 'color: purple; background-color: white;']})
+        name_elems = self.soup.find_all('font', {'style':['color: #E68A00; background-color: white;', 'color: purple; background-color: white;', 'color: #0099FF; background-color: white;']})
         score_elems = self.soup.find_all('font', {'color':'#333333'})
         assignment_names = [str(elem.string) for elem in name_elems]
         assignment_scores = [str(elem.string).split(' / ') for elem in score_elems if '/' in str(elem.string)]
@@ -137,10 +137,10 @@ def find_updates(new_grades, old_grades, subject_dict):
                 # the new assignment already has a grade in it
                 if subject_dict[subject].blanks[assignment] == False:
                     assignment_list.append(assignment)
-            # prevent from adding empty lists to the dict updated_assignments
-            if len(assignment_list) >= 1:
-                updated_assignments[subject] = assignment_list
-                assignment_list = []
+        # prevent from adding empty lists to the dict updated_assignments
+        if len(assignment_list) >= 1:
+            updated_assignments[subject] = assignment_list
+            assignment_list = []
 
     return updated_assignments
 
