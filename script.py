@@ -182,12 +182,13 @@ def construct_email(subject_dict, assignment, subject):
 def main():
 
     subject_names = [
-        '[HS] AP CHEMISTRY', 
-        '[HS] HON SPANISH 4', 
-        '[HS] AP CALCULUS AB', 
-        '[HS] AP LANGUAGE-COMP', 
-        '[HS] AP US HISTORY', 
-        '[HS] CHS INTRO PROGRAM'
+        '[HS] AP CALCULUS BC', 
+        '[HS] AP-CHS PSYCHOLOGY', 
+        '[HS] AP COMPUTER SCIENCE A', 
+        '[HS] HON BRITISH LIT', 
+        '[HS] AP STATISTICS', 
+        '[HS] AP MACRO-MICRO ECON',
+        '[HS] HON PHYSICS'
     ]
     subject_dict = {name : Subject(name) for name in subject_names}
 
