@@ -27,8 +27,8 @@ class Subject:
         """ grab html source from subject page and parse into soup with BeautifulSoup """
 
         # find class title to click
-        target = browser.find_element_by_xpath(f'//*[contains(text(), "{self.name}")]')
-        # target = browser.find_element_by_xpath('//*[contains(text(), "{}")]'.format(self.name))
+        # target = browser.find_element_by_xpath(f'//*[contains(text(), "{self.name}")]')
+        target = browser.find_element_by_xpath('//*[contains(text(), "{}")]'.format(self.name))
         target.click()
 
         # wait up to 10 sec for grades to load
@@ -100,7 +100,7 @@ def login():
     options = webdriver.ChromeOptions()
     options.add_argument(' — incognito')
     options.set_headless(headless=True)
-    browser = webdriver.Chrome(executable_path='chromedriver_linux64/chromedriver', chrome_options=options)
+    browser = webdriver.Chrome(executable_path='/usr/lib/chromium-browser/chromedriver', chrome_options=options)
 
     browser.get(URL)
     browser.find_element_by_id('txt_Username').send_keys(USERNAME)
@@ -111,7 +111,6 @@ def write_to_json(subject_dict, subject_names):
     """ write status of missing grades to a json file to compare to on next run """
 
     # get the status of containing blank scores for each subject
-    # use subject_names to iterate in order to keep subjects in order, using subject_dict.values() doesnt preserver order
     status_list = [subject_dict[name].blanks for name in subject_names]
     # TODO: test status_list as a dict containing subject name
 
@@ -165,19 +164,19 @@ def construct_email(subject_dict, assignment, subject):
     new_percent = subj.letter_grade[0]
     letter_grade = subj.letter_grade[1]
 
-    msg = (
-        f"\nAssignment: {assignment}"
-        f"\nScore: {my_score} / {total_score}"
-        f"\nClass Grade: {new_percent} {letter_grade}"
-    )
-    # for raspberry pi that has python 3.5 and doesn't support f-strings
-    # msg = (
-    #     "\nAssignment: {}".format(assignment)
-    #     + "\nScore: {} / {}".format(my_score, total_score)
-    #     + "\nClass Grade: {} {}".format(new_percent, letter_grade)
+    #msg = (
+    #    f"\nAssignment: {assignment}"
+    #    f"\nScore: {my_score} / {total_score}"
+    #    f"\nClass Grade: {new_percent} {letter_grade}"
     # )
+    # for raspberry pi that has python 3.5 and doesn't support f-strings
+    msg = (
+        "Class: {}".format(name)
+        + "\nScore: {} / {}".format(my_score, total_score)
+        + "\nClass Grade: {} {}".format(new_percent, letter_grade)
+    )
     
-    send_email(name, msg)
+    send_email(assignment, msg)
 
 
 def main():
