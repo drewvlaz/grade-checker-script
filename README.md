@@ -2,11 +2,11 @@
 
 ## Dependencies
 1. Requests
-    * To get the grades
+    * Get the grades
 2. BeautifulSoup
-    * To parse the html source code
+    * Parse the html source code
 3. Yagmail
-    * To send emails
+    * Send emails
 
 
 ## Overview
