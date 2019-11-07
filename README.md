@@ -45,11 +45,3 @@
    EMAIL_PASSWORD = ''
    TARGET_ADDRESS = '' # the email you want to be notified by here (so you don't expose your actual email to security threats)
 ```
-
-## Chromedriver
-   Download the appropiate chromedriver for your OS <a href="http://chromedriver.chromium.org/downloads"> here.</a> Then update the
-   correct path in the ```login()``` function:
-   ```Python
-   browser = webdriver.Chrome(executable_path='path/to/chromedriver', chrome_options=options)
-   ```
-
