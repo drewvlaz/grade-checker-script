@@ -2,9 +2,9 @@
 
 ## Dependencies
 1. Requests
-    * Get the grades
+    * Get the grades via HTTP requests
 2. BeautifulSoup
-    * Parse the html source code
+    * Parse the html
 3. Yagmail
     * Send emails
 
