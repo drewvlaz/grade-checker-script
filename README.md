@@ -1,8 +1,8 @@
 # grade-checker-script
 
 ## Dependencies
-1. Selenium
-    * To interact with the chrome webdriver
+1. Requests
+    * To get the grades
 2. BeautifulSoup
     * To parse the html source code
 3. Yagmail
