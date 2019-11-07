@@ -1,12 +1,8 @@
-import time
 import json
 import sys
 
 import yagmail
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import requests
 from bs4 import BeautifulSoup as BS
 
 from auth import (
@@ -23,25 +19,13 @@ class Subject:
     def __init__(self, name):
         self.name = name
 
-    def html_to_soup(self):
+    def html_to_soup(self, sess, period):
         """ grab html source from subject page and parse into soup with BeautifulSoup """
 
-        # find class title to click
-        # target = browser.find_element_by_xpath(f'//*[contains(text(), "{self.name}")]')
-        target = browser.find_element_by_xpath('//*[contains(text(), "{}")]'.format(self.name))
-        target.click()
+        TARGET = 'https://portal.svsd.net/9/students/Grades_POST.asp?a=1&Class={}&b=0'.format(period)
+        html = sess.get(TARGET)
 
-        # wait up to 10 sec for grades to load
-        delay = 10
-        try:
-            WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="div_class"]/table[1]/tbody/tr[1]/td/table/tbody/tr/td[1]')))
-            time.sleep(1)
-        except:
-            # something failed with the browser or simply taking too long to load, better to end script and re-run
-            sys.exit()
-        
-        html = browser.page_source
-        self.soup = BS(html, 'html.parser')
+        self.soup = BS(html.text, 'html.parser')
 
 
     def get_letter_grade(self):
@@ -90,28 +74,20 @@ class Subject:
         self.blanks = blanks
 
 
-def login():
-    """ configure browser settings then go to URL and login with credentials from auth.py """
+def login(sess):
+    """ go to URL and login with credentials from auth.py """
 
-    # accessed by Subject class
-    global browser
+    payload = {'txt_Username': USERNAME, 'txt_Password': PASSWORD} 
+    LOGIN_URL = 'https://portal.svsd.net/students/Default_POST.asp'
 
-    # configure chrome to be incognito and not display a window gui
-    options = webdriver.ChromeOptions()
-    options.add_argument(' — incognito')
-    options.set_headless(headless=True)
-    browser = webdriver.Chrome(executable_path='/usr/lib/chromium-browser/chromedriver', chrome_options=options)
+    # post login
+    sess.post(LOGIN_URL, data=payload)
 
-    browser.get(URL)
-    browser.find_element_by_id('txt_Username').send_keys(USERNAME)
-    browser.find_element_by_id('txt_Password').send_keys(PASSWORD + '\n')
-
-
-def write_to_json(subject_dict, subject_names):
+def write_to_json(subject_dict, periods):
     """ write status of missing grades to a json file to compare to on next run """
 
     # get the status of containing blank scores for each subject
-    status_list = [subject_dict[name].blanks for name in subject_names]
+    status_list = [subject_dict[period].blanks for period in periods]
     # TODO: test status_list as a dict containing subject name
 
     # write list to json to compare to later
@@ -155,8 +131,6 @@ def construct_email(subject_dict, assignment, subject):
     """ use credentials from auth.py to login into email account and send email to target """
 
     subj = subject_dict[subject]
-    # class name without '[HS] ' in front
-    name = subj.name[5:]
     # subj.assignments is dict --> {'assignment_name':['9', '10']}
     my_score = subj.assignments[assignment][0]
     total_score = subj.assignments[assignment][1]
@@ -171,7 +145,7 @@ def construct_email(subject_dict, assignment, subject):
     # )
     # for raspberry pi that has python 3.5 and doesn't support f-strings
     msg = (
-        "Class: {}".format(name)
+        "Class: {}".format(subj.name)
         + "\nScore: {} / {}".format(my_score, total_score)
         + "\nClass Grade: {} {}".format(new_percent, letter_grade)
     )
@@ -182,37 +156,45 @@ def construct_email(subject_dict, assignment, subject):
 def main():
 
     subject_names = [
-        '[HS] AP CALCULUS BC', 
-        '[HS] AP-CHS PSYCHOLOGY', 
-        '[HS] AP COMPUTER SCIENCE A', 
-        '[HS] HON BRITISH LIT', 
-        '[HS] AP STATISTICS', 
-        '[HS] AP MACRO-MICRO ECON',
-        '[HS] HON PHYSICS'
+        'AP CALCULUS BC', 
+        'AP PSYCHOLOGY', 
+        'AP COMPUTER SCIENCE A', 
+        'HON BRITISH LIT', 
+        'AP STATISTICS', 
+        'AP MACRO-MICRO ECON',
+        'HON PHYSICS'
     ]
-    subject_dict = {name : Subject(name) for name in subject_names}
+    subjects = [Subject(name) for name in subject_names]
+    periods = [1, 2, 3, 4, 6, 7, 9]
 
-    login()
-    for subj in subject_dict.values():
-        subj.html_to_soup()
-    browser.quit()
-    # ^ don't spend unnecessary processing power keeping browser open; close it and loop again for other functions
-    for subj in subject_dict.values():
-        subj.get_letter_grade()
-        subj.get_assignment_scores()
-        subj.check_blank_assigments()
+    subject_dict = dict(zip(periods, subjects))
+    test = Subject("Calc")
+
+    with requests.Session() as sess:
+        login(sess)
+
+        for pd, subj in subject_dict.items():
+            subj.html_to_soup(sess, pd)
+            subj.get_letter_grade()
+            subj.get_assignment_scores()
+            subj.check_blank_assigments()
+
+            print(subj.name + ": " + subj.letter_grade[0])
+
+        sess.close()
 
     # open or create json file to hold status of grades
     try:
-        with open('file_to_compare.json', 'r') as file:
+        with open('file_to_compare.json', 'r+') as file:
             file_to_compare = json.load(file)
             old_grades = dict(zip(subject_names, file_to_compare))
 
     except:
-        write_to_json(subject_dict, subject_names)
-        old_grades = {name : subject_dict[name].blanks for name in subject_names}
+        write_to_json(subject_dict, periods)
+        old_grades = {pd : subject_dict[pd].blanks for pd in periods}
+
     # same format as old_grades
-    new_grades = {name : subject_dict[name].blanks for name in subject_names}
+    new_grades = {pd : subject_dict[pd].blanks for pd in periods}
     
     if new_grades != old_grades:
         # Grades Updated!
@@ -225,7 +207,7 @@ def main():
                 construct_email(subject_dict, assignment, subject)
 
         # update json file
-        write_to_json(subject_dict, subject_names)
+        write_to_json(subject_dict, periods)
 
 
 main()
