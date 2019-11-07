@@ -167,7 +167,6 @@ def main():
     periods = [1, 2, 3, 4, 6, 7, 9]
 
     subject_dict = dict(zip(periods, subjects))
-    test = Subject("Calc")
 
     with requests.Session() as sess:
         login(sess)
