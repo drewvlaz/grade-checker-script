@@ -19,8 +19,8 @@
    
    1. Logs into grade portal and clicks on each class to get html of grades
    <center>
-   <img src="https://github.com/drewvlaz/grade-checker-script/blob/master/pics/course_overview.png" alt="course overview" width="600"/>
-   <img src="https://github.com/drewvlaz/grade-checker-script/blob/master/pics/class_grades_ex.PNG" alt="example class" width="600"/>
+   <img src="https://github.com/drewvlaz/grade-checker-script/blob/master/pics/portal.png" alt="course overview" width="600"/>
+   <img src="https://github.com/drewvlaz/grade-checker-script/blob/master/pics/class.png" alt="example class" width="600"/>
    </center>
    
    2. Parses the html and extracts assignment names and scores for each class, storing results in multiple dictionaries
