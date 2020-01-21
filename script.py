@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup as BS
 from auth import (
     USERNAME,
     PASSWORD,
+    URL,
     EMAIL_ADDRESS,
     EMAIL_PASSWORD,
     TARGET_ADDRESS
@@ -104,17 +105,23 @@ def find_updates(new_grades, old_grades, subject_dict):
             # new_grades will be False and old_grades will be True in relation to the score == '__'
             try:
                 if new_grades[subject][assignment] == False and old_grades[subject][assignment] == True:
+                    print(assignment)
+                    print("\n")
                     # list of assingments that have been updated
                     assignment_list.append(assignment)
             # KeyError will be thrown if a new assignment was added in new_grades that isnt in old_grades
-            except KeyError:
+            except:
                 # the new assignment already has a grade in it
                 if subject_dict[subject].blanks[assignment] == False:
                     assignment_list.append(assignment)
         # prevent from adding empty lists to the dict updated_assignments
+        # print(assignment_list)
+        # print("\n")
         if len(assignment_list) >= 1:
             updated_assignments[subject] = assignment_list
             assignment_list = []
+
+    # print(updated_assignments)
 
     return updated_assignments
 
@@ -167,6 +174,7 @@ def main():
     periods = [1, 2, 3, 4, 6, 7, 9]
 
     subject_dict = dict(zip(periods, subjects))
+    test = Subject("Calc")
 
     with requests.Session() as sess:
         login(sess)
@@ -185,7 +193,7 @@ def main():
     try:
         with open('file_to_compare.json', 'r+') as file:
             file_to_compare = json.load(file)
-            old_grades = dict(zip(subject_names, file_to_compare))
+            old_grades = dict(zip(periods, file_to_compare))
 
     except:
         write_to_json(subject_dict, periods)
